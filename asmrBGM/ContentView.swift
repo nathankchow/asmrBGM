@@ -88,8 +88,11 @@ struct ContentView: View {
 
         }.onAppear{
             print("Hello World!")
+            print("Hello World!")
+            print("Hello World!")
         self.audioPlayer = try! AVAudioPlayer(contentsOf: mashiro!)
         self.audioPlayer2 = try! AVAudioPlayer(contentsOf: moyu!)
+        //test
         }
     }
 }

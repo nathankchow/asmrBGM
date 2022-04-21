@@ -27,6 +27,15 @@ struct ContentView: View {
         print("Hello World!")
     }
     
+    func debug() {
+#if (targetEnvironment(simulator))
+        print("sim")
+        #else
+        print("not sim")
+        #endif
+    }
+    
+    
     func play() {
         if !self.audioPlayer.isPlaying {
             self.audioPlayer.play()
@@ -36,6 +45,7 @@ struct ContentView: View {
             self.audioPlayer2.pause()
         }
     }
+
     
     var body: some View {
         VStack{
@@ -68,16 +78,28 @@ struct ContentView: View {
                     Button("play", action:self.play)
                     Button("next", action:self.foo)
                 }
+            
+
+                
                 Slider(
-                    value: $asmrVol,
+                    value: Binding(get: {
+                        self.asmrVol
+                    }, set: { (newVal) in
+                        self.asmrVol = newVal
+                        self.audioPlayer.setVolume(Float(self.asmrVol/100), fadeDuration: 0)
+                    }),
                     in: 0...100,
-                    step: 1
-                )
-                Slider(
-                    value: $bgmVol,
-                    in: 0...100,
-                    step: 1
-                )
+                    step: 1)
+            
+            Slider(
+                value: Binding(get: {
+                    self.bgmVol
+                }, set: { (newVal) in
+                    self.bgmVol = newVal
+                    self.audioPlayer2.setVolume(Float(self.bgmVol/100), fadeDuration: 0)
+                }),
+                in: 0...100,
+                step: 1)
             HStack{
                 Button("Save Preset", action: self.foo)
                 Button("Load Preset", action: self.foo)
@@ -85,15 +107,25 @@ struct ContentView: View {
             HStack{
                 Button("Options", action: self.foo)
             }
+            Button("Debug", action: self.debug
+                   )
+    
 
         }.onAppear{
-            print("Hello World!")
-            print("Hello World!")
-            print("Hello World!")
-        self.audioPlayer = try! AVAudioPlayer(contentsOf: mashiro!)
-        self.audioPlayer2 = try! AVAudioPlayer(contentsOf: moyu!)
-        //test
+            #if targetEnvironment(simulator)
+                        let sound = Bundle.main.path(forResource: "sugar", ofType: "mp3")
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                        let sound2 = Bundle.main.path(forResource: "surely_pianuki", ofType: "mp3")
+                        self.audioPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+            #else
+            self.audioPlayer =  try! AVAudioPlayer(contentsOf: mashiro!)
+                self.audioPlayer2 = try! AVAudioPlayer(contentsOf: moyu!)
+            #endif
+            self.audioPlayer.setVolume(Float(asmrVol/100), fadeDuration: 0)
+            self.audioPlayer2.setVolume(Float(bgmVol/100), fadeDuration: 0)
         }
+        
+        //test
     }
 }
 

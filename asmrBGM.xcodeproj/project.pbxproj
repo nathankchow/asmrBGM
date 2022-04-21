@@ -11,6 +11,8 @@
 		C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EC2807B8F7003E437D /* ContentView.swift */; };
 		C2AED0EF2807B8F9003E437D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2AED0EE2807B8F9003E437D /* Assets.xcassets */; };
 		C2AED0F22807B8F9003E437D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2AED0F12807B8F9003E437D /* Preview Assets.xcassets */; };
+		C2CD7A6F280A97A000CCE27E /* sugar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2CD7A6D280A979F00CCE27E /* sugar.mp3 */; };
+		C2CD7A70280A97A000CCE27E /* surely_pianuki.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2CD7A6E280A97A000CCE27E /* surely_pianuki.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		C2AED0EE2807B8F9003E437D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2AED0F12807B8F9003E437D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C2AED0F82807B95F003E437D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C2CD7A6D280A979F00CCE27E /* sugar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sugar.mp3; sourceTree = "<group>"; };
+		C2CD7A6E280A97A000CCE27E /* surely_pianuki.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = surely_pianuki.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				C2AED0F82807B95F003E437D /* Info.plist */,
 				C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */,
 				C2AED0EC2807B8F7003E437D /* ContentView.swift */,
+				C2CD7A6D280A979F00CCE27E /* sugar.mp3 */,
+				C2CD7A6E280A97A000CCE27E /* surely_pianuki.mp3 */,
 				C2AED0EE2807B8F9003E437D /* Assets.xcassets */,
 				C2AED0F02807B8F9003E437D /* Preview Content */,
 			);
@@ -127,7 +133,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2CD7A70280A97A000CCE27E /* surely_pianuki.mp3 in Resources */,
 				C2AED0F22807B8F9003E437D /* Preview Assets.xcassets in Resources */,
+				C2CD7A6F280A97A000CCE27E /* sugar.mp3 in Resources */,
 				C2AED0EF2807B8F9003E437D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

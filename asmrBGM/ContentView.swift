@@ -10,14 +10,17 @@
 import SwiftUI
 import AVKit
 import MediaPlayer
+import Foundation
 
 struct ContentView: View {
     @State var audioPlayer: AVAudioPlayer!
     @State var audioPlayer2: AVAudioPlayer!
+    @State private var asmrDuration: TimeInterval = 1200.0
+    @State private var asmrPosition: TimeInterval = 0.0
     @State private var asmrVol = 40.0
     @State private var bgmVol = 20.0
-    @State private var pos = 5.0
-
+    @State private var pos = 0.0
+    @State var playing = false
     
     //hardcode for now
     var mashiro = URL(string: "ipod-library://item/item.wav?id=7669358569489308532")
@@ -67,12 +70,22 @@ struct ContentView: View {
                         Button("Edit", action: self.foo)
                     }
                 }
+//                Slider(
+//                    value: $pos,
+//                    in: 0...100,
+//                    step: 1
+//                )
                 Slider(
-                    value: $pos,
+                    value: Binding(get: {
+                        self.asmrPosition / self.asmrDuration * 100
+                    }, set: { (newVal) in
+                        self.asmrPosition = newVal * self.asmrDuration / 100
+                    }),
                     in: 0...100,
                     step: 1
                 )
-        
+            Text("\(asmrPosition/asmrDuration * 100)")
+
                 HStack{
                     Button("prev", action:self.foo)
                     Button("play", action:self.play)
@@ -115,14 +128,20 @@ struct ContentView: View {
             #if targetEnvironment(simulator)
                         let sound = Bundle.main.path(forResource: "sugar", ofType: "mp3")
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                        
                         let sound2 = Bundle.main.path(forResource: "surely_pianuki", ofType: "mp3")
                         self.audioPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+
+
             #else
             self.audioPlayer =  try! AVAudioPlayer(contentsOf: mashiro!)
                 self.audioPlayer2 = try! AVAudioPlayer(contentsOf: moyu!)
             #endif
             self.audioPlayer.setVolume(Float(asmrVol/100), fadeDuration: 0)
             self.audioPlayer2.setVolume(Float(bgmVol/100), fadeDuration: 0)
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
+                print(String(self.audioPlayer.currentTime))
+            }
         }
         
         //test

@@ -11,7 +11,7 @@ import SwiftUI
 struct asmrBGMApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            asperi()
         }
     }
 }

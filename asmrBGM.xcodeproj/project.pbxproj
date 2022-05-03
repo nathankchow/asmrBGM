@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C24108D42813BFD7001E9C74 /* asperi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24108D32813BFD7001E9C74 /* asperi.swift */; };
+		C2AAFEE52820CE9B00BBBB7D /* loadAsmr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */; };
 		C2AED0EB2807B8F7003E437D /* asmrBGMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */; };
 		C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EC2807B8F7003E437D /* ContentView.swift */; };
 		C2AED0EF2807B8F9003E437D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2AED0EE2807B8F9003E437D /* Assets.xcassets */; };
 		C2AED0F22807B8F9003E437D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2AED0F12807B8F9003E437D /* Preview Assets.xcassets */; };
 		C2CD7A6F280A97A000CCE27E /* sugar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2CD7A6D280A979F00CCE27E /* sugar.mp3 */; };
 		C2CD7A70280A97A000CCE27E /* surely_pianuki.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2CD7A6E280A97A000CCE27E /* surely_pianuki.mp3 */; };
+		C2DCA4A5281E4CEB00CD4DB0 /* toki.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2DCA4A4281E4CEB00CD4DB0 /* toki.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C24108D32813BFD7001E9C74 /* asperi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asperi.swift; sourceTree = "<group>"; };
+		C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadAsmr.swift; sourceTree = "<group>"; };
 		C2AED0E72807B8F7003E437D /* asmrBGM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = asmrBGM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrBGMApp.swift; sourceTree = "<group>"; };
 		C2AED0EC2807B8F7003E437D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		C2AED0F82807B95F003E437D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C2CD7A6D280A979F00CCE27E /* sugar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sugar.mp3; sourceTree = "<group>"; };
 		C2CD7A6E280A97A000CCE27E /* surely_pianuki.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = surely_pianuki.mp3; sourceTree = "<group>"; };
+		C2DCA4A4281E4CEB00CD4DB0 /* toki.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = toki.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,9 @@
 		C2AED0E92807B8F7003E437D /* asmrBGM */ = {
 			isa = PBXGroup;
 			children = (
+				C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */,
+				C24108D32813BFD7001E9C74 /* asperi.swift */,
+				C2DCA4A4281E4CEB00CD4DB0 /* toki.mp3 */,
 				C2AED0F82807B95F003E437D /* Info.plist */,
 				C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */,
 				C2AED0EC2807B8F7003E437D /* ContentView.swift */,
@@ -134,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2CD7A70280A97A000CCE27E /* surely_pianuki.mp3 in Resources */,
+				C2DCA4A5281E4CEB00CD4DB0 /* toki.mp3 in Resources */,
 				C2AED0F22807B8F9003E437D /* Preview Assets.xcassets in Resources */,
 				C2CD7A6F280A97A000CCE27E /* sugar.mp3 in Resources */,
 				C2AED0EF2807B8F9003E437D /* Assets.xcassets in Resources */,
@@ -147,6 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2AAFEE52820CE9B00BBBB7D /* loadAsmr.swift in Sources */,
+				C24108D42813BFD7001E9C74 /* asperi.swift in Sources */,
 				C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */,
 				C2AED0EB2807B8F7003E437D /* asmrBGMApp.swift in Sources */,
 			);

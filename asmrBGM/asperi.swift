@@ -4,139 +4,12 @@ import MediaPlayer
 import Foundation
 import Combine
 
-final class localAudio: ObservableObject {
-    @Published var localAudioList: [MPMediaItem]? = MPMediaQuery.songs().items
-    
-    func refreshLocalAudioList() {
-        self.localAudioList = MPMediaQuery.songs().items
-    }
-    
-    func printLocalAudioList() {
-        for song in self.localAudioList ?? [] {
-            print(song.title ?? "No Title")
-        }
-    }
-}
-
-class audioSettings: ObservableObject {
-    
-    var audioPlayer: AVAudioPlayer?
-    var playing = false
-    @Published var playValue: TimeInterval = 0.0
-    @Published var playerDuration: TimeInterval? = 146
-    var isPositionEditing = false
-    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    var testSound: String = "sugar"
-    
-    func playSound(sound: String, type: String) {
-        if let path = Bundle.main.path(forResource: sound, ofType: type) {
-            do {
-                if playing == false {
-                    if (audioPlayer == nil) {
-                        
-                        
-                        audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-                        playerDuration = audioPlayer?.duration
-                        audioPlayer?.prepareToPlay()
-                        
-                        audioPlayer?.play()
-                        playing = true
-                    }
-                    
-                }
-                if playing == false {
-                    
-                    audioPlayer?.play()
-                    playing = true
-                }
-                
-                
-            } catch {
-                print("Could not find and play the sound file.")
-            }
-        }
-        
-    }
-    
-    func playAsmrURL(sound: String) {
-        if let path = URL(string: sound) {
-            do {
-                if playing == false {
-                    if (audioPlayer == nil) {
-                        
-                        
-                        audioPlayer = try AVAudioPlayer(contentsOf: path)
-                        playerDuration = audioPlayer?.duration
-                        audioPlayer?.prepareToPlay()
-                        
-                        audioPlayer?.play()
-                        playing = true
-                    }
-                    
-                }
-                if playing == false {
-                    
-                    audioPlayer?.play()
-                    playing = true
-                }
-                
-                
-            } catch {
-                print("Could not find and play the sound file.")
-            }
-        }
-        
-    }
-
-    func stopSound() {
-        //   if playing == true {
-        audioPlayer?.stop()
-        audioPlayer = nil
-        playing = false
-        playValue = 0.0
-        //   }
-    }
-    
-    func pauseSound() {
-        if playing == true {
-            audioPlayer?.pause()
-            playing = false
-        }
-    }
-    
-
-    func changeSliderValue() {
-        if playing == true {
-            if !isPositionEditing {
-                pauseSound()
-                audioPlayer?.currentTime = playValue
-            }
-        }
-        
-        if playing == false {
-            audioPlayer?.play()
-            playing = true
-        }
-    }
-    
-    func changeSong() {
-        if playing == true {
-            stopSound()
-        }
-        if testSound == "sugar" {
-            testSound = "toki"
-        } else {
-            testSound = "sugar"
-        }
-    }
-}
 
 struct asperi: View {
     @ObservedObject var audiosettings = audioSettings()
     @StateObject var localaudio = localAudio()
     @State private var playButton: Image = Image(systemName: "play.circle")
     @State private var page: Int? = 0
-    @State var linkedAsmrURL: String = ""
 
     
     func pauseToPlay() {
@@ -220,7 +93,7 @@ struct asperi: View {
                 Button(action: self.printStuff) {
                     Text("PRINT LOCAL AUDIO ITEMS")
                 }
-                NavigationLink(destination: loadAsmr(asmrURL: $linkedAsmrURL), tag: 1, selection: $page) {
+                NavigationLink(destination: loadAsmr(asmrtrack: self.$audiosettings.asmrtrack), tag: 1, selection: $page) {
                     EmptyView()
                 }
                 Text("Destination 1")
@@ -233,19 +106,18 @@ struct asperi: View {
                     Text("GOTO DESTINATION 1")
                 }
                 Button(action: {
-                    self.audiosettings.playAsmrURL(sound: linkedAsmrURL)
+                    self.audiosettings.playAsmrURL()
                 }) {
                     Text("PLAY ASMR FROM URL")
                 }
                 Button(action: {
-                    print(linkedAsmrURL)
+                    print("\(self.audiosettings.asmrtrack.title)")
                 }) {
                     Text("DEBUG")
                 }
 
             }
         }
-        .environmentObject(localaudio)
     }
 }
 

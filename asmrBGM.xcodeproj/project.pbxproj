@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C24108D42813BFD7001E9C74 /* asperi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24108D32813BFD7001E9C74 /* asperi.swift */; };
+		C2777F8A282472290032429A /* audioSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2777F89282472290032429A /* audioSettings.swift */; };
+		C2777F8C282473080032429A /* localAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2777F8B282473080032429A /* localAudio.swift */; };
+		C2777F8E2824F7020032429A /* asmrTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2777F8D2824F7020032429A /* asmrTrack.swift */; };
 		C2AAFEE52820CE9B00BBBB7D /* loadAsmr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */; };
 		C2AED0EB2807B8F7003E437D /* asmrBGMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */; };
 		C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EC2807B8F7003E437D /* ContentView.swift */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		C24108D32813BFD7001E9C74 /* asperi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asperi.swift; sourceTree = "<group>"; };
+		C2777F89282472290032429A /* audioSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioSettings.swift; sourceTree = "<group>"; };
+		C2777F8B282473080032429A /* localAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localAudio.swift; sourceTree = "<group>"; };
+		C2777F8D2824F7020032429A /* asmrTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrTrack.swift; sourceTree = "<group>"; };
 		C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadAsmr.swift; sourceTree = "<group>"; };
 		C2AED0E72807B8F7003E437D /* asmrBGM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = asmrBGM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrBGMApp.swift; sourceTree = "<group>"; };
@@ -62,8 +68,11 @@
 		C2AED0E92807B8F7003E437D /* asmrBGM */ = {
 			isa = PBXGroup;
 			children = (
+				C2777F8B282473080032429A /* localAudio.swift */,
 				C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */,
+				C2777F8D2824F7020032429A /* asmrTrack.swift */,
 				C24108D32813BFD7001E9C74 /* asperi.swift */,
+				C2777F89282472290032429A /* audioSettings.swift */,
 				C2DCA4A4281E4CEB00CD4DB0 /* toki.mp3 */,
 				C2AED0F82807B95F003E437D /* Info.plist */,
 				C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */,
@@ -159,7 +168,10 @@
 			files = (
 				C2AAFEE52820CE9B00BBBB7D /* loadAsmr.swift in Sources */,
 				C24108D42813BFD7001E9C74 /* asperi.swift in Sources */,
+				C2777F8E2824F7020032429A /* asmrTrack.swift in Sources */,
 				C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */,
+				C2777F8A282472290032429A /* audioSettings.swift in Sources */,
+				C2777F8C282473080032429A /* localAudio.swift in Sources */,
 				C2AED0EB2807B8F7003E437D /* asmrBGMApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

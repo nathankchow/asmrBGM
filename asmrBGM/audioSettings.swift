@@ -18,13 +18,13 @@ class audioSettings: ObservableObject {
     var playing = false
     @Published var playValue: TimeInterval = 0.0
     @Published var playerDuration: TimeInterval? = 146
-    @Published var asmrtrack = asmrTrack() {
+    @Published var asmrtrack = asmrTrack(nil) {
         didSet {
             self.stopSound()
             self.playAsmrTrack()
         }
     }
-    @Published var bgmtrack = bgmTrack() {
+    @Published var bgmtrack = bgmTrack(nil) {
         didSet{
             print("Attempting to play BGM track.")
             self.playBgmTrack()
@@ -37,6 +37,7 @@ class audioSettings: ObservableObject {
     
     func playAsmrTrack() {
         print("Sugondese nuts")
+        self.playAsmrURL()
     }
     
     func playSound(sound: String, type: String) {

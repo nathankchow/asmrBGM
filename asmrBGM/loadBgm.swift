@@ -13,13 +13,15 @@ import Combine
 
 struct loadBgm: View {
     @Binding var bgmtrack: bgmTrack
+    @Environment(\.presentationMode) var presentationMode
 
     var tracklist = bgmTrack.TrackList()
     var body: some View {
         List(tracklist) {audio in
             Text(audio.title).onTapGesture {
-                bgmtrack.updateMainTrack(title: audio.title, artist: audio.artist, duration: audio.duration, assetURL: audio.assetURL!)
-                print("bgm track changed to \(audio.title).")
+                bgmtrack = audio
+                print("BGM changed to \(audio.title).")
+                presentationMode.wrappedValue.dismiss()
             }
         }
     }
@@ -28,6 +30,6 @@ struct loadBgm: View {
 
 struct loadBgm_Previews: PreviewProvider {
     static var previews: some View {
-        loadBgm(bgmtrack: .constant(bgmTrack()))
+        loadBgm(bgmtrack: .constant(bgmTrack(nil)))
     }
 }

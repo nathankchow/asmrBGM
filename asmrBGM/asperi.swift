@@ -27,11 +27,8 @@ struct asperi: View {
     var body: some View {
         NavigationView{
             VStack {
-                Text(self.$audiosettings.asmrtrack.title.wrappedValue).onChange(of: self.audiosettings.asmrtrack.title.wrappedValue) {
-                    self.audiosettings.playAsmrURL()
-                }
+                Text("\(self.$audiosettings.asmrtrack.title.wrappedValue)\n\(self.$audiosettings.bgmtrack.title.wrappedValue)")
 
-                
                 Button(action: {
                     if (self.playButton == Image(systemName: "play.circle")) {
                         print("All Done")
@@ -115,12 +112,6 @@ struct asperi: View {
                     self.page = 2
                 }) {
                     Text("Load BGM file")
-                }
-                
-                Button(action: {
-                    self.audiosettings.playAsmrURL()
-                }) {
-                    Text("Hello World")
                 }
                 
 

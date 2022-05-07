@@ -19,7 +19,7 @@ struct loadAsmr: View {
     var body: some View {
         List(tracklist) {audio in
             Text(audio.title).onTapGesture {
-                asmrtrack.updateMainTrack(title: audio.title, artist: audio.artist, duration: audio.duration, assetURL: audio.assetURL!)
+                asmrtrack = audio
                 print("Song changed to \(audio.title).")
                 presentationMode.wrappedValue.dismiss()
             }
@@ -30,6 +30,6 @@ struct loadAsmr: View {
 
 struct loadAsmr_Previews: PreviewProvider {
     static var previews: some View {
-        loadAsmr(asmrtrack: .constant(asmrTrack()))
+        loadAsmr(asmrtrack: .constant(asmrTrack(nil)))
     }
 }

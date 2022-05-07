@@ -13,6 +13,7 @@ import Combine
 
 struct loadAsmr: View {
     @Binding var asmrtrack: asmrTrack
+    @Environment(\.presentationMode) var presentationMode
 
     var tracklist = asmrTrack.TrackList()
     var body: some View {
@@ -20,6 +21,7 @@ struct loadAsmr: View {
             Text(audio.title).onTapGesture {
                 asmrtrack.updateMainTrack(title: audio.title, artist: audio.artist, duration: audio.duration, assetURL: audio.assetURL!)
                 print("Song changed to \(audio.title).")
+                presentationMode.wrappedValue.dismiss()
             }
         }
     }

@@ -13,7 +13,8 @@ import Combine
 
 class audioSettings: ObservableObject {
     
-    var audioPlayer: AVAudioPlayer?
+    var asmrPlayer: AVAudioPlayer?
+    var bgmPlayer: AVAudioPlayer?
     var playing = false
     @Published var playValue: TimeInterval = 0.0
     @Published var playerDuration: TimeInterval? = 146
@@ -23,6 +24,13 @@ class audioSettings: ObservableObject {
             self.playAsmrTrack()
         }
     }
+    @Published var bgmtrack = bgmTrack() {
+        didSet{
+            print("Attempting to play BGM track.")
+            self.playBgmTrack()
+        }
+    }
+    
     var isPositionEditing = false
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var testSound: String = "sugar"
@@ -35,21 +43,21 @@ class audioSettings: ObservableObject {
         if let path = Bundle.main.path(forResource: sound, ofType: type) {
             do {
                 if playing == false {
-                    if (audioPlayer == nil) {
+                    if (asmrPlayer == nil) {
                         
                         
-                        audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-                        playerDuration = audioPlayer?.duration
-                        audioPlayer?.prepareToPlay()
+                        asmrPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+                        playerDuration = asmrPlayer?.duration
+                        asmrPlayer?.prepareToPlay()
                         
-                        audioPlayer?.play()
+                        asmrPlayer?.play()
                         playing = true
                     }
                     
                 }
                 if playing == false {
                     
-                    audioPlayer?.play()
+                    asmrPlayer?.play()
                     playing = true
                 }
                 
@@ -65,21 +73,21 @@ class audioSettings: ObservableObject {
         if let path = self.asmrtrack.assetURL {
             do {
                 if playing == false {
-                    if (audioPlayer == nil) {
+                    if (asmrPlayer == nil) {
                         
                         
-                        audioPlayer = try AVAudioPlayer(contentsOf: path)
-                        playerDuration = audioPlayer?.duration
-                        audioPlayer?.prepareToPlay()
+                        asmrPlayer = try AVAudioPlayer(contentsOf: path)
+                        playerDuration = asmrPlayer?.duration
+                        asmrPlayer?.prepareToPlay()
                         
-                        audioPlayer?.play()
+                        asmrPlayer?.play()
                         playing = true
                     }
                     
                 }
                 if playing == false {
                     
-                    audioPlayer?.play()
+                    asmrPlayer?.play()
                     playing = true
                 }
                 
@@ -90,11 +98,25 @@ class audioSettings: ObservableObject {
         }
         
     }
+    
+    func playBgmTrack() {
+        if let path = self.bgmtrack.assetURL {
+            do {
+                        bgmPlayer = try AVAudioPlayer(contentsOf: path)
+                        bgmPlayer?.prepareToPlay()
+                        bgmPlayer?.play()
+                
+            } catch {
+                print("Could not find and play the sound file.")
+            }
+        }
+        
+    }
 
     func stopSound() {
         //   if playing == true {
-        audioPlayer?.stop()
-        audioPlayer = nil
+        asmrPlayer?.stop()
+        asmrPlayer = nil
         playing = false
         playValue = 0.0
         //   }
@@ -102,7 +124,7 @@ class audioSettings: ObservableObject {
     
     func pauseSound() {
         if playing == true {
-            audioPlayer?.pause()
+            asmrPlayer?.pause()
             playing = false
         }
     }
@@ -112,12 +134,12 @@ class audioSettings: ObservableObject {
         if playing == true {
             if !isPositionEditing {
                 pauseSound()
-                audioPlayer?.currentTime = playValue
+                asmrPlayer?.currentTime = playValue
             }
         }
         
         if playing == false {
-            audioPlayer?.play()
+            asmrPlayer?.play()
             playing = true
         }
     }

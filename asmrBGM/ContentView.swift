@@ -13,8 +13,8 @@ import MediaPlayer
 import Foundation
 
 struct ContentView: View {
-    @State var audioPlayer: AVAudioPlayer!
-    @State var audioPlayer2: AVAudioPlayer!
+    @State var asmrPlayer: AVAudioPlayer!
+    @State var asmrPlayer2: AVAudioPlayer!
     @State private var asmrDuration: TimeInterval = 1200.0
     @State private var asmrPosition: TimeInterval = 0.0
     @State private var asmrVol = 40.0
@@ -40,12 +40,12 @@ struct ContentView: View {
     
     
     func play() {
-        if !self.audioPlayer.isPlaying {
-            self.audioPlayer.play()
-            self.audioPlayer2.play()
+        if !self.asmrPlayer.isPlaying {
+            self.asmrPlayer.play()
+            self.asmrPlayer2.play()
         } else {
-            self.audioPlayer.pause()
-            self.audioPlayer2.pause()
+            self.asmrPlayer.pause()
+            self.asmrPlayer2.pause()
         }
     }
 
@@ -99,7 +99,7 @@ struct ContentView: View {
                         self.asmrVol
                     }, set: { (newVal) in
                         self.asmrVol = newVal
-                        self.audioPlayer.setVolume(Float(self.asmrVol/100), fadeDuration: 0)
+                        self.asmrPlayer.setVolume(Float(self.asmrVol/100), fadeDuration: 0)
                     }),
                     in: 0...100,
                     step: 1)
@@ -109,7 +109,7 @@ struct ContentView: View {
                     self.bgmVol
                 }, set: { (newVal) in
                     self.bgmVol = newVal
-                    self.audioPlayer2.setVolume(Float(self.bgmVol/100), fadeDuration: 0)
+                    self.asmrPlayer2.setVolume(Float(self.bgmVol/100), fadeDuration: 0)
                 }),
                 in: 0...100,
                 step: 1)
@@ -127,20 +127,20 @@ struct ContentView: View {
         }.onAppear{
             #if targetEnvironment(simulator)
                         let sound = Bundle.main.path(forResource: "sugar", ofType: "mp3")
-                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                        self.asmrPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                         
                         let sound2 = Bundle.main.path(forResource: "surely_pianuki", ofType: "mp3")
-                        self.audioPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+                        self.asmrPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
 
 
             #else
-            self.audioPlayer =  try! AVAudioPlayer(contentsOf: mashiro!)
-                self.audioPlayer2 = try! AVAudioPlayer(contentsOf: moyu!)
+            self.asmrPlayer =  try! AVAudioPlayer(contentsOf: mashiro!)
+                self.asmrPlayer2 = try! AVAudioPlayer(contentsOf: moyu!)
             #endif
-            self.audioPlayer.setVolume(Float(asmrVol/100), fadeDuration: 0)
-            self.audioPlayer2.setVolume(Float(bgmVol/100), fadeDuration: 0)
+            self.asmrPlayer.setVolume(Float(asmrVol/100), fadeDuration: 0)
+            self.asmrPlayer2.setVolume(Float(bgmVol/100), fadeDuration: 0)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
-                print(String(self.audioPlayer.currentTime))
+                print(String(self.asmrPlayer.currentTime))
             }
         }
         
@@ -161,7 +161,7 @@ struct ContentView_Previews: PreviewProvider {
 //            }
 //            HStack{
 //                Button(action:
-//                        {self.audioPlayer.play()
+//                        {self.asmrPlayer.play()
 //                }) {
 //                    Image(systemName: "play.circle.fill").resizable().frame(width:50, height: 50)
 //                        .aspectRatio(contentMode: .fit)
@@ -170,7 +170,7 @@ struct ContentView_Previews: PreviewProvider {
 //            }
 //            HStack{
 //                Button(action:
-//                        {self.audioPlayer2.play()
+//                        {self.asmrPlayer2.play()
 //                }) {
 //                    Image(systemName: "play.circle.fill").resizable().frame(width:50, height: 50)
 //                        .aspectRatio(contentMode: .fit)
@@ -179,19 +179,19 @@ struct ContentView_Previews: PreviewProvider {
 //            }
 //
 //        }.onAppear {
-//            self.audioPlayer = try! AVAudioPlayer(contentsOf: mashiro!)
-//            self.audioPlayer2 = try! AVAudioPlayer(contentsOf: moyu!)
+//            self.asmrPlayer = try! AVAudioPlayer(contentsOf: mashiro!)
+//            self.asmrPlayer2 = try! AVAudioPlayer(contentsOf: moyu!)
 //
 //            let sound = Bundle.main.path(forResource: "asmr1", ofType: "mp3")
-//            self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+//            self.asmrPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
 //            let sound2 = Bundle.main.path(forResource: "bgm1", ofType: "wav")
-//            self.audioPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+//            self.asmrPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
 //            let mediaItems = MPMediaQuery.songs().items
 //            let sound3 = mediaItems![0].assetURL!
 //            for item in mediaItems!{
 //                print(item.title!)
 //                print(item.assetURL!.absoluteString)
 //            }
-//            self.audioPlayer3 = try! AVAudioPlayer(contentsOf: sound3)
+//            self.asmrPlayer3 = try! AVAudioPlayer(contentsOf: sound3)
 //        }
 

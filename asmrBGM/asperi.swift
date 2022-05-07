@@ -27,6 +27,11 @@ struct asperi: View {
     var body: some View {
         NavigationView{
             VStack {
+                Text(self.$audiosettings.asmrtrack.title.wrappedValue).onChange(of: self.audiosettings.asmrtrack.title.wrappedValue) {
+                    self.audiosettings.playAsmrURL()
+                }
+
+                
                 Button(action: {
                     if (self.playButton == Image(systemName: "play.circle")) {
                         print("All Done")
@@ -64,7 +69,7 @@ struct asperi: View {
                     print(self.audiosettings.isPositionEditing)
                     if self.audiosettings.playing {
                         if !self.audiosettings.isPositionEditing {
-                            if let currentTime = self.audiosettings.audioPlayer?.currentTime {
+                            if let currentTime = self.audiosettings.asmrPlayer?.currentTime {
                                 self.audiosettings.playValue = currentTime
                             
                                 if currentTime == TimeInterval(0.0) {
@@ -90,31 +95,34 @@ struct asperi: View {
                 }) {
                     Text("CHANGE SONG TESTING")
                 }
-                Button(action: self.printStuff) {
-                    Text("PRINT LOCAL AUDIO ITEMS")
-                }
+
+                
                 NavigationLink(destination: loadAsmr(asmrtrack: self.$audiosettings.asmrtrack), tag: 1, selection: $page) {
                     EmptyView()
                 }
-                Text("Destination 1")
-                    .onTapGesture {
-                        self.page = 1
-                    }
+
+                NavigationLink(destination: loadBgm(bgmtrack: self.$audiosettings.bgmtrack), tag: 2, selection: $page) {
+                    EmptyView()
+                }
+                
                 Button(action: {
                     self.page = 1
                 }) {
-                    Text("GOTO DESTINATION 1")
+                    Text("Load ASMR file")
                 }
+
+                Button(action: {
+                    self.page = 2
+                }) {
+                    Text("Load BGM file")
+                }
+                
                 Button(action: {
                     self.audiosettings.playAsmrURL()
                 }) {
-                    Text("PLAY ASMR FROM URL")
+                    Text("Hello World")
                 }
-                Button(action: {
-                    print("\(self.audiosettings.asmrtrack.title)")
-                }) {
-                    Text("DEBUG")
-                }
+                
 
             }
         }

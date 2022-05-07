@@ -1,17 +1,15 @@
 //
-//  asmrTrack.swift
+//  bgmTrack.swift
 //  asmrBGM
 //
-//  Created by natha on 5/5/22.
+//  Created by natha on 5/7/22.
 //
 
-import SwiftUI
+import Foundation
 import AVKit
 import MediaPlayer
-import Foundation
-import Combine
 
-class asmrTrack: Identifiable, ObservableObject {
+class bgmTrack: Identifiable, ObservableObject {
     
     let id = UUID()
     @Published var item: MPMediaItem?
@@ -49,5 +47,3 @@ class asmrTrack: Identifiable, ObservableObject {
         return tracklist
     }
 }
-
-

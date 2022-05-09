@@ -3,14 +3,13 @@ import AVKit
 import MediaPlayer
 import Foundation
 import Combine
-
+import AVFAudio
 
 struct asperi: View {
     @StateObject var audiosettings = audioSettings()
     @StateObject var localaudio = localAudio()
     @State private var playButton: Image = Image(systemName: "play.circle")
     @State private var page: Int? = 0
-
     
     func pauseToPlay() {
         self.audiosettings.stopSound()

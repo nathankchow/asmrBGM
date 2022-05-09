@@ -10,6 +10,7 @@ import AVKit
 import MediaPlayer
 import Foundation
 import Combine
+import AVFAudio
 
 class audioSettings: ObservableObject {
     
@@ -31,6 +32,20 @@ class audioSettings: ObservableObject {
             print("Attempting to play BGM track.")
             self.playBgmTrack()
         }
+    }
+    
+    init() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+        } catch {
+            print(error)
+        }
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error)
+        }
+        
     }
     
     var isPositionEditing = false

@@ -11,7 +11,11 @@ import MediaPlayer
 import Foundation
 import Combine
 
-struct loadBgm: View {
+struct loadBgm: View, Equatable {
+    static func == (lhs: loadBgm, rhs: loadBgm) -> Bool {
+        return True 
+    }
+    
     @Binding var bgmtrack: bgmTrack
     @Environment(\.presentationMode) var presentationMode
 

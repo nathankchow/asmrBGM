@@ -28,7 +28,7 @@ struct asperi: View {
             VStack {
                 
                 Group {
-                    NavigationLink(destination: loadAsmr(asmrtrack: self.$audiosettings.asmrtrack), tag: 1, selection: $page) {
+                    NavigationLink(destination: loadAsmr(asmrtrack: self.$audiosettings.asmrtrack).equatable(), tag: 1, selection: $page) {
                         EmptyView()
                     }
                     NavigationLink(destination: loadBgm(bgmtrack: self.$audiosettings.bgmtrack), tag: 2, selection: $page) {

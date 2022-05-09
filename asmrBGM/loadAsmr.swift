@@ -11,7 +11,11 @@ import MediaPlayer
 import Foundation
 import Combine
 
-struct loadAsmr: View {
+struct loadAsmr: View, Equatable {
+    static func == (lhs: loadAsmr, rhs: loadAsmr) -> Bool {
+        return lhs.tracklist == rhs.tracklist
+    }
+    
     @Binding var asmrtrack: asmrTrack
     @Environment(\.presentationMode) var presentationMode
 

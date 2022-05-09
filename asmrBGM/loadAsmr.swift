@@ -13,7 +13,7 @@ import Combine
 
 struct loadAsmr: View, Equatable {
     static func == (lhs: loadAsmr, rhs: loadAsmr) -> Bool {
-        return lhs.tracklist == rhs.tracklist
+        return true
     }
     
     @Binding var asmrtrack: asmrTrack

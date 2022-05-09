@@ -31,7 +31,7 @@ struct asperi: View {
                     NavigationLink(destination: loadAsmr(asmrtrack: self.$audiosettings.asmrtrack).equatable(), tag: 1, selection: $page) {
                         EmptyView()
                     }
-                    NavigationLink(destination: loadBgm(bgmtrack: self.$audiosettings.bgmtrack), tag: 2, selection: $page) {
+                    NavigationLink(destination: loadBgm(bgmtrack: self.$audiosettings.bgmtrack).equatable(), tag: 2, selection: $page) {
                         EmptyView()
                     }
                 }

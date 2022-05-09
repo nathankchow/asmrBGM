@@ -15,3 +15,7 @@ struct asmrBGMApp: App {
         }
     }
 }
+
+
+
+//looks like loadAsmr view refreshes itself when a song is loaded

@@ -107,6 +107,7 @@ class audioSettings: ObservableObject {
             do {
                         bgmPlayer = try AVAudioPlayer(contentsOf: path)
                         bgmPlayer?.prepareToPlay()
+                        bgmPlayer?.numberOfLoops = -1
                         bgmPlayer?.setVolume(Float(bgmVolume/100), fadeDuration: 0)
 
                         bgmPlayer?.play()

@@ -6,7 +6,7 @@ import Combine
 
 
 struct asperi: View {
-    @ObservedObject var audiosettings = audioSettings()
+    @StateObject var audiosettings = audioSettings()
     @StateObject var localaudio = localAudio()
     @State private var playButton: Image = Image(systemName: "play.circle")
     @State private var page: Int? = 0
@@ -38,18 +38,30 @@ struct asperi: View {
                 }
                 
                 Group {
-                    Text("\(self.$audiosettings.asmrtrack.title.wrappedValue)\n\(self.$audiosettings.asmrtrack.artist.wrappedValue)")
+                    Text("\(self.audiosettings.asmrtrack.title)\n\(self.audiosettings.asmrtrack.artist)")
                     Button(action: {
                         self.page = 1
                     }) {
                         Text("Load ASMR file")
                     }
-                    Text("\(self.$audiosettings.bgmtrack.title.wrappedValue)\n\(self.$audiosettings.bgmtrack.artist.wrappedValue)")
+                    Text("\(self.audiosettings.bgmtrack.title)\n\(self.audiosettings.bgmtrack.artist)")
                     Button(action: {
                         self.page = 2
                     }) {
                         Text("Load BGM file")
                     }
+                }.onChange(of: self.$audiosettings.asmrtrack.wrappedValue) { _ in
+                    if (self.playButton == Image(systemName: "play.circle")) {
+                        print("All Done")
+                        self.audiosettings.playAsmrURL()
+                        self.audiosettings.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                        self.audiosettings.bgmPlayer?.play()
+                        self.playButton = Image(systemName: "pause.circle")
+                    }
+                    print("Why does this print 4 times? XD ")
+                    
+                    //ATTENTION: this prints 4 messages, need to learn why
+                    
                 }
                 
                 Group {
@@ -76,18 +88,22 @@ struct asperi: View {
                     else {
                         self.audiosettings.playing = false
                         self.audiosettings.timer.upstream.connect().cancel()
+                        self.audiosettings.bgmPlayer?.stop()
+                        self.audiosettings.bgmPlayer?.prepareToPlay()
                     }
                 }
                     Button(action: {
                         if (self.playButton == Image(systemName: "play.circle")) {
                             print("All Done")
-                            self.audiosettings.playSound(sound: audiosettings.testSound, type: "mp3")
+                            self.audiosettings.playAsmrURL()
+                            self.audiosettings.bgmPlayer?.play()
                             self.audiosettings.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                             self.playButton = Image(systemName: "pause.circle")
                             
                         } else {
                             print("Not done")
                             self.audiosettings.pauseSound()
+                            self.audiosettings.bgmPlayer?.pause()
                             self.playButton = Image(systemName: "play.circle")
                         }
                     }) {
@@ -95,6 +111,26 @@ struct asperi: View {
                             .foregroundColor(Color.blue)
                             .font(.system(size: 44))
                     }
+                    
+                    Slider(
+                        value: Binding(get: {
+                            self.audiosettings.asmrVolume
+                        }, set: { (newVal) in
+                            self.audiosettings.asmrVolume = newVal
+                            self.audiosettings.asmrPlayer?.setVolume(Float(self.audiosettings.asmrVolume/100), fadeDuration: 0)
+                        }),
+                        in: 0...100,
+                        step: 1)
+                
+                Slider(
+                    value: Binding(get: {
+                        self.audiosettings.bgmVolume
+                    }, set: { (newVal) in
+                        self.audiosettings.bgmVolume = newVal
+                        self.audiosettings.bgmPlayer?.setVolume(Float(self.audiosettings.bgmVolume/100), fadeDuration: 0)
+                    }),
+                    in: 0...100,
+                    step: 1)
 //                Button(action: {
 //                    self.audiosettings.changeSong()
 //                    self.pauseToPlay()

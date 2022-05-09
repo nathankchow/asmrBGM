@@ -16,8 +16,10 @@ class audioSettings: ObservableObject {
     var asmrPlayer: AVAudioPlayer?
     var bgmPlayer: AVAudioPlayer?
     var playing = false
+    @Published var asmrVolume: Float = 100.0
+    @Published var bgmVolume: Float = 100.0
     @Published var playValue: TimeInterval = 0.0
-    @Published var playerDuration: TimeInterval? = 146
+    @Published var playerDuration: TimeInterval? = 0.0
     @Published var asmrtrack = asmrTrack(nil) {
         didSet {
             self.stopSound()
@@ -50,7 +52,7 @@ class audioSettings: ObservableObject {
                         asmrPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
                         playerDuration = asmrPlayer?.duration
                         asmrPlayer?.prepareToPlay()
-                        
+                        asmrPlayer?.setVolume(Float(asmrVolume/100), fadeDuration: 0)
                         asmrPlayer?.play()
                         playing = true
                     }
@@ -80,7 +82,7 @@ class audioSettings: ObservableObject {
                         asmrPlayer = try AVAudioPlayer(contentsOf: path)
                         playerDuration = asmrPlayer?.duration
                         asmrPlayer?.prepareToPlay()
-                        
+                        asmrPlayer?.setVolume(Float(asmrVolume/100), fadeDuration: 0)
                         asmrPlayer?.play()
                         playing = true
                     }
@@ -105,6 +107,8 @@ class audioSettings: ObservableObject {
             do {
                         bgmPlayer = try AVAudioPlayer(contentsOf: path)
                         bgmPlayer?.prepareToPlay()
+                        bgmPlayer?.setVolume(Float(bgmVolume/100), fadeDuration: 0)
+
                         bgmPlayer?.play()
                 
             } catch {

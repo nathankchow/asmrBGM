@@ -90,6 +90,7 @@
 				C2980BC628266743000F91CE /* bgmTrack.swift */,
 				C2777F8B282473080032429A /* localAudio.swift */,
 				C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */,
+				C2980BC828266A3F000F91CE /* loadBgm.swift */,
 				C2777F8D2824F7020032429A /* asmrTrack.swift */,
 				C24108D32813BFD7001E9C74 /* asperi.swift */,
 				C2777F89282472290032429A /* audioSettings.swift */,
@@ -101,7 +102,6 @@
 				C2CD7A6E280A97A000CCE27E /* surely_pianuki.mp3 */,
 				C2AED0EE2807B8F9003E437D /* Assets.xcassets */,
 				C2AED0F02807B8F9003E437D /* Preview Content */,
-				C2980BC828266A3F000F91CE /* loadBgm.swift */,
 			);
 			path = asmrBGM;
 			sourceTree = "<group>";

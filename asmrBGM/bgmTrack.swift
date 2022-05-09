@@ -11,7 +11,7 @@ import MediaPlayer
 import Foundation
 import Combine
 
-struct bgmTrack: Identifiable {
+struct bgmTrack: Identifiable, Equatable {
     
     let id = UUID()
     var title: String

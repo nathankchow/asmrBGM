@@ -18,18 +18,35 @@ struct loadAsmr: View, Equatable {
     
     @Binding var asmrtrack: asmrTrack
     @Environment(\.presentationMode) var presentationMode
+    @State private var searchText = ""
 
     var tracklist = asmrTrack.TrackList()
     var body: some View {
-        List(tracklist) {audio in
-            Text(audio.title).onTapGesture {
-                asmrtrack = audio
-                print("Song changed to \(audio.title).")
-                presentationMode.wrappedValue.dismiss()
-            }.padding()
+        TextField(
+            "Search your library",
+            text: $searchText
+        )
+            .padding()
+
+        List {
+            ForEach(searchResults, id: \.self) {audio in
+                    Text(audio.title).onTapGesture {
+                        asmrtrack = audio
+                        print("Song changed to \(audio.title).")
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                
+            }
         }
     }
-
+    
+    var searchResults: [asmrTrack] {
+        if searchText.isEmpty {
+            return tracklist
+        } else {
+            return tracklist.filter {$0.title.lowercased().contains(searchText.lowercased())}
+        }
+    }
 }
 
 struct loadAsmr_Previews: PreviewProvider {

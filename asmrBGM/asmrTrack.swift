@@ -11,7 +11,7 @@ import MediaPlayer
 import Foundation
 import Combine
 
-struct asmrTrack: Identifiable, Equatable {
+struct asmrTrack: Identifiable, Equatable, Hashable {
     
     let id = UUID()
     var title: String

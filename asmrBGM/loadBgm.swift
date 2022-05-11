@@ -18,18 +18,35 @@ struct loadBgm: View, Equatable {
     
     @Binding var bgmtrack: bgmTrack
     @Environment(\.presentationMode) var presentationMode
+    @State private var searchText = ""
+
 
     var tracklist = bgmTrack.TrackList()
     var body: some View {
-        List(tracklist) {audio in
-            Text(audio.title).onTapGesture {
-                bgmtrack = audio
-                print("BGM changed to \(audio.title).")
-                presentationMode.wrappedValue.dismiss()
-            }.padding()
+        TextField(
+            "Search your library",
+            text: $searchText
+        )
+            .padding()
+
+        List {
+            ForEach(searchResults, id: \.self) {audio in
+                    Text(audio.title).onTapGesture {
+                        bgmtrack = audio
+                        print("Song changed to \(audio.title).")
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                
+            }
         }
     }
-
+    var searchResults: [bgmTrack] {
+        if searchText.isEmpty {
+            return tracklist
+        } else {
+            return tracklist.filter {$0.title.lowercased().contains(searchText.lowercased())}
+        }
+    }
 }
 
 struct loadBgm_Previews: PreviewProvider {

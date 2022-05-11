@@ -13,7 +13,7 @@ import Combine
 
 struct loadBgm: View, Equatable {
     static func == (lhs: loadBgm, rhs: loadBgm) -> Bool {
-        return True 
+        return true 
     }
     
     @Binding var bgmtrack: bgmTrack
@@ -26,7 +26,7 @@ struct loadBgm: View, Equatable {
                 bgmtrack = audio
                 print("BGM changed to \(audio.title).")
                 presentationMode.wrappedValue.dismiss()
-            }
+            }.padding()
         }
     }
 

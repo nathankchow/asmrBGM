@@ -26,7 +26,7 @@ struct loadAsmr: View, Equatable {
                 asmrtrack = audio
                 print("Song changed to \(audio.title).")
                 presentationMode.wrappedValue.dismiss()
-            }
+            }.padding()
         }
     }
 

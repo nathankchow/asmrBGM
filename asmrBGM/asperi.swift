@@ -91,6 +91,9 @@ struct asperi: View {
                         self.audiosettings.bgmPlayer?.prepareToPlay()
                     }
                 }
+                .padding(.leading)
+                .padding(.trailing)
+                    
                     Button(action: {
                         if (self.playButton == Image(systemName: "play.circle")) {
                             print("All Done")
@@ -120,6 +123,8 @@ struct asperi: View {
                         }),
                         in: 0...100,
                         step: 1)
+                        .padding(.leading)
+                        .padding(.trailing)
                 
                 Slider(
                     value: Binding(get: {
@@ -130,6 +135,8 @@ struct asperi: View {
                     }),
                     in: 0...100,
                     step: 1)
+                        .padding(.leading)
+                        .padding(.trailing)
 //                Button(action: {
 //                    self.audiosettings.changeSong()
 //                    self.pauseToPlay()

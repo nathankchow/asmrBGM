@@ -14,7 +14,6 @@
 		C2980BC728266743000F91CE /* bgmTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BC628266743000F91CE /* bgmTrack.swift */; };
 		C2980BC928266A3F000F91CE /* loadBgm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BC828266A3F000F91CE /* loadBgm.swift */; };
 		C2980BCE28267E3D000F91CE /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2980BCD28267E3D000F91CE /* libswiftWebKit.tbd */; };
-		C2980BD028267E81000F91CE /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BCF28267E81000F91CE /* test.swift */; };
 		C2AAFEE52820CE9B00BBBB7D /* loadAsmr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */; };
 		C2AED0EB2807B8F7003E437D /* asmrBGMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */; };
 		C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EC2807B8F7003E437D /* ContentView.swift */; };
@@ -33,7 +32,6 @@
 		C2980BC628266743000F91CE /* bgmTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bgmTrack.swift; sourceTree = "<group>"; };
 		C2980BC828266A3F000F91CE /* loadBgm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadBgm.swift; sourceTree = "<group>"; };
 		C2980BCD28267E3D000F91CE /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
-		C2980BCF28267E81000F91CE /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadAsmr.swift; sourceTree = "<group>"; };
 		C2AED0E72807B8F7003E437D /* asmrBGM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = asmrBGM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrBGMApp.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 		C2AED0DE2807B8F6003E437D = {
 			isa = PBXGroup;
 			children = (
-				C2980BCF28267E81000F91CE /* test.swift */,
 				C2AED0E92807B8F7003E437D /* asmrBGM */,
 				C2AED0E82807B8F7003E437D /* Products */,
 				C2980BCC28267E3D000F91CE /* Frameworks */,
@@ -190,7 +187,6 @@
 				C2AAFEE52820CE9B00BBBB7D /* loadAsmr.swift in Sources */,
 				C2980BC928266A3F000F91CE /* loadBgm.swift in Sources */,
 				C24108D42813BFD7001E9C74 /* asperi.swift in Sources */,
-				C2980BD028267E81000F91CE /* test.swift in Sources */,
 				C2777F8E2824F7020032429A /* asmrTrack.swift in Sources */,
 				C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */,
 				C2980BC728266743000F91CE /* bgmTrack.swift in Sources */,
@@ -339,7 +335,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,7 +374,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

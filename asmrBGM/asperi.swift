@@ -61,8 +61,11 @@ struct asperi: View {
                     
                     //ATTENTION: this prints 4 messages, need to learn why
                     
+                }.onChange(of: self.$audiosettings.bgmtrack.assetURL.wrappedValue) {newValue in
+                    if (self.playButton == Image(systemName: "play.circle")) {
+                        self.playButton = Image(systemName: "pause.circle")
+                    }
                 }
-                
                 Group {
             
                 Slider(value: $audiosettings.playValue, in: TimeInterval(0.0)...audiosettings.playerDuration!, onEditingChanged: { editing in
@@ -95,6 +98,21 @@ struct asperi: View {
                 .padding(.trailing)
                     
                     Button(action: {
+                        if (self.audiosettings.asmrtrack.assetURL == nil && self.audiosettings.bgmtrack.assetURL == nil) {
+                            return
+                        }
+                        
+                        if (self.audiosettings.asmrtrack.assetURL == nil && self.audiosettings.bgmtrack.assetURL != nil) {
+                            if (self.playButton == Image(systemName: "play.circle")) {
+                                self.audiosettings.bgmPlayer?.play()
+                                self.playButton = Image(systemName: "pause.circle")
+                            } else {
+                                self.audiosettings.bgmPlayer?.pause()
+                                self.playButton = Image(systemName: "play.circle")
+                            }
+                            return
+                        }
+                        
                         if (self.playButton == Image(systemName: "play.circle")) {
                             print("All Done")
                             self.audiosettings.playAsmrURL()

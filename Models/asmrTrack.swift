@@ -1,6 +1,6 @@
 //
-//  bgmTrack.swift
-//  bgmBGM
+//  asmrTrack.swift
+//  asmrBGM
 //
 //  Created by natha on 5/5/22.
 //
@@ -11,15 +11,16 @@ import MediaPlayer
 import Foundation
 import Combine
 
-struct bgmTrack: Identifiable, Equatable, Hashable {
+struct asmrTrack: Identifiable, Equatable, Hashable, Codable, Comparable {
     
-    let id = UUID()
+    let id: UUID
     var title: String
     var assetURL: URL?
     var artist: String
     var duration: TimeInterval
     
     init(_ mpmediaitem: MPMediaItem?) {
+        self.id = UUID()
         if let item = mpmediaitem {
             title = item.title ?? "No Title"
             assetURL = item.assetURL
@@ -33,14 +34,18 @@ struct bgmTrack: Identifiable, Equatable, Hashable {
         }
     }
 
-    static func TrackList() -> [bgmTrack] {
+    static func TrackList() -> [asmrTrack] {
         let list = MPMediaQuery.songs().items ?? []
-        var tracklist: [bgmTrack]  = []
+        var tracklist: [asmrTrack]  = []
         for item in list {
-            tracklist.append(bgmTrack(item))
+            tracklist.append(asmrTrack(item))
         }
-        tracklist.append(bgmTrack(nil))
+        tracklist.append(asmrTrack(nil))
         return tracklist
+    }
+    
+    static func < (lhs: asmrTrack, rhs: asmrTrack) -> Bool {
+        return lhs.title < rhs.title
     }
 }
 

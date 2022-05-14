@@ -13,38 +13,102 @@ import Combine
 
 struct loadBgm: View, Equatable {
     static func == (lhs: loadBgm, rhs: loadBgm) -> Bool {
-        return true 
+        return true
     }
     
+    @StateObject private var store = BgmTrackStore()
     @Binding var bgmtrack: bgmTrack
     @Environment(\.presentationMode) var presentationMode
     @State private var searchText = ""
 
-
     var tracklist = bgmTrack.TrackList()
     var body: some View {
-        TextField(
-            "Search your library",
-            text: $searchText
-        )
-            .padding()
-
-        List {
-            ForEach(searchResults, id: \.self) {audio in
-                    Text(audio.title).onTapGesture {
-                        bgmtrack = audio
-                        print("Song changed to \(audio.title).")
-                        presentationMode.wrappedValue.dismiss()
+        TabView{
+            
+            VStack{
+                TextField(
+                    "Search your library",
+                    text: $searchText
+                )
+                    .padding()
+                    .onAppear {
+                        BgmTrackStore.load {result in
+                            switch result {
+                            case .failure(let error):
+                                fatalError(error.localizedDescription)
+                            case .success (let bgmtracks):
+                                store.bgmTracks = bgmtracks
+                            }
+                        }
                     }
-                
+
+                List {
+                    ForEach(store.bgmTracks, id: \.self) {audio in
+                            Text(audio.title).onTapGesture {
+                                bgmtrack = audio
+                                print("Song changed to \(audio.title).")
+                                presentationMode.wrappedValue.dismiss()
+                            }
+
+                    }
+                }
+                Button(action: {
+                    store.bgmTracks = []
+                    BgmTrackStore.save(bgmtracks: store.bgmTracks) { result in
+                        if case .failure (let error) = result {
+                            fatalError(error.localizedDescription)
+                        }
+                    }
+                }) {
+                    Text("DEBUG BUTTON!")
+                }
+            }.tabItem {
+                Image(systemName: "play.circle")
+                Text("Load")
+            }
+            
+            VStack{
+                TextField(
+                    "Search your library",
+                    text: $searchText
+                )
+                    .padding()
+
+                List {
+                    ForEach(searchResults, id: \.self) {audio in
+                            Text(audio.title).onTapGesture {
+//                                asmrtrack = audio
+//                                print("Song changed to \(audio.title).")
+//                                presentationMode.wrappedValue.dismiss()
+                                store.bgmTracks.append(audio)
+                                BgmTrackStore.save(bgmtracks: store.bgmTracks) { result in
+                                    if case .failure (let error) = result {
+                                        fatalError(error.localizedDescription)
+                                    }
+                                }
+                                print("\(audio.title) appended to store possibly?")
+                            }
+                        
+                    }
+                }
+            }.tabItem{
+                Image(systemName: "pause.circle")
+                Text("Add")
             }
         }
     }
+
+    var subtractedAddList: [bgmTrack] {
+        let bgmset1 = Set(tracklist)
+        let bgmset2 = Set(store.bgmTracks)
+        return Array(bgmset1.subtracting(bgmset2).sorted())
+    }
+    
     var searchResults: [bgmTrack] {
         if searchText.isEmpty {
-            return tracklist
+            return subtractedAddList
         } else {
-            return tracklist.filter {$0.title.lowercased().contains(searchText.lowercased())}
+            return subtractedAddList.filter {$0.title.lowercased().contains(searchText.lowercased())}
         }
     }
 }

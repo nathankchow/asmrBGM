@@ -11,15 +11,16 @@ import MediaPlayer
 import Foundation
 import Combine
 
-struct asmrTrack: Identifiable, Equatable, Hashable {
+struct bgmTrack: Identifiable, Equatable, Hashable, Codable, Comparable {
     
-    let id = UUID()
+    let id: UUID
     var title: String
     var assetURL: URL?
     var artist: String
     var duration: TimeInterval
     
     init(_ mpmediaitem: MPMediaItem?) {
+        self.id = UUID()
         if let item = mpmediaitem {
             title = item.title ?? "No Title"
             assetURL = item.assetURL
@@ -33,14 +34,18 @@ struct asmrTrack: Identifiable, Equatable, Hashable {
         }
     }
 
-    static func TrackList() -> [asmrTrack] {
+    static func TrackList() -> [bgmTrack] {
         let list = MPMediaQuery.songs().items ?? []
-        var tracklist: [asmrTrack]  = []
+        var tracklist: [bgmTrack]  = []
         for item in list {
-            tracklist.append(asmrTrack(item))
+            tracklist.append(bgmTrack(item))
         }
-        tracklist.append(asmrTrack(nil))
+        tracklist.append(bgmTrack(nil))
         return tracklist
+    }
+    
+    static func < (lhs: bgmTrack, rhs: bgmTrack) -> Bool {
+        return lhs.title < rhs.title
     }
 }
 

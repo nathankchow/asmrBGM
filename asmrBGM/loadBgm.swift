@@ -100,9 +100,7 @@ struct loadBgm: View, Equatable {
     }
 
     var subtractedAddList: [bgmTrack] {
-        let bgmset1 = Set(tracklist)
-        let bgmset2 = Set(store.bgmTracks)
-        return Array(bgmset1.subtracting(bgmset2).sorted())
+        return bgmTrack.filteredList(original: tracklist, filter: store.bgmTracks)
     }
     
     

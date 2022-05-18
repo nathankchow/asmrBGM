@@ -100,9 +100,7 @@ struct loadAsmr: View, Equatable {
     }
 
     var subtractedAddList: [asmrTrack] {
-        let asmrset1 = Set(tracklist)
-        let asmrset2 = Set(store.asmrTracks)
-        return Array(asmrset1.subtracting(asmrset2).sorted())
+        return asmrTrack.filteredList(original: tracklist , filter: store.asmrTracks)
     }
     
     var searchResultsLoad: [asmrTrack] {

@@ -24,17 +24,22 @@ struct asmrTrack: Identifiable, Equatable, Hashable, Codable, Comparable {
     }
     
     init(_ mpmediaitem: MPMediaItem?) {
-        self.id = UUID()
         if let item = mpmediaitem {
             title = item.title ?? "No Title"
             assetURL = item.assetURL
             artist = item.artist ?? ""
             duration = item.playbackDuration
+            if let url = assetURL {
+                id = UUID(uuidString: url.absoluteString) ?? UUID()
+            } else {
+                id = UUID()
+            }
         } else {
             title = "No Title"
             assetURL = nil
             artist = "---"
             duration = TimeInterval(0.0)
+            id = UUID()
         }
     }
 

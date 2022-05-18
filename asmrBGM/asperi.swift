@@ -5,6 +5,12 @@ import Foundation
 import Combine
 import AVFAudio
 
+
+#warning ("TODO fix text search logic in load asmr/bgm")
+#warning ("TODO add album playing mode")
+#warning ("TODO add way to delete indivudal tracks in load asmr/bgm")
+#warning ("TODO refurbish UI")
+
 struct asperi: View {
     @StateObject var audiosettings = audioSettings()
     @StateObject var localaudio = localAudio()

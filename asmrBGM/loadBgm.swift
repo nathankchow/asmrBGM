@@ -19,7 +19,8 @@ struct loadBgm: View, Equatable {
     @StateObject private var store = BgmTrackStore()
     @Binding var bgmtrack: bgmTrack
     @Environment(\.presentationMode) var presentationMode
-    @State private var searchText = ""
+    @State private var searchTextLoad = ""
+    @State private var searchTextAdd = ""
 
     var tracklist = bgmTrack.TrackList()
     var body: some View {
@@ -28,7 +29,7 @@ struct loadBgm: View, Equatable {
             VStack{
                 TextField(
                     "Search your library",
-                    text: $searchText
+                    text: $searchTextLoad
                 )
                     .padding()
                     .onAppear {
@@ -43,7 +44,7 @@ struct loadBgm: View, Equatable {
                     }
 
                 List {
-                    ForEach(store.bgmTracks, id: \.self) {audio in
+                    ForEach(searchResultsLoad, id: \.self) {audio in
                             Text(audio.title).onTapGesture {
                                 bgmtrack = audio
                                 print("Song changed to \(audio.title).")
@@ -70,12 +71,12 @@ struct loadBgm: View, Equatable {
             VStack{
                 TextField(
                     "Search your library",
-                    text: $searchText
+                    text: $searchTextAdd
                 )
                     .padding()
 
                 List {
-                    ForEach(searchResults, id: \.self) {audio in
+                    ForEach(searchResultsAdd, id: \.self) {audio in
                             Text(audio.title).onTapGesture {
 //                                asmrtrack = audio
 //                                print("Song changed to \(audio.title).")
@@ -104,11 +105,20 @@ struct loadBgm: View, Equatable {
         return Array(bgmset1.subtracting(bgmset2).sorted())
     }
     
-    var searchResults: [bgmTrack] {
-        if searchText.isEmpty {
+    
+    var searchResultsLoad: [bgmTrack] {
+        if searchTextLoad.isEmpty {
+            return store.bgmTracks
+        } else {
+            return store.bgmTracks.filter {$0.title.lowercased().contains(searchTextLoad.lowercased())}
+        }
+    }
+    
+    var searchResultsAdd: [bgmTrack] {
+        if searchTextAdd.isEmpty {
             return subtractedAddList
         } else {
-            return subtractedAddList.filter {$0.title.lowercased().contains(searchText.lowercased())}
+            return subtractedAddList.filter {$0.title.lowercased().contains(searchTextAdd.lowercased())}
         }
     }
 }

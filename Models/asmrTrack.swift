@@ -19,6 +19,10 @@ struct asmrTrack: Identifiable, Equatable, Hashable, Codable, Comparable {
     var artist: String
     var duration: TimeInterval
     
+    static func == (lhs: asmrTrack, rhs: asmrTrack) -> Bool {
+        return lhs.assetURL == rhs.assetURL
+    }
+    
     init(_ mpmediaitem: MPMediaItem?) {
         self.id = UUID()
         if let item = mpmediaitem {

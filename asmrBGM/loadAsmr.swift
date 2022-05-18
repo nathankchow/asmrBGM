@@ -19,8 +19,9 @@ struct loadAsmr: View, Equatable {
     @StateObject private var store = AsmrTrackStore()
     @Binding var asmrtrack: asmrTrack
     @Environment(\.presentationMode) var presentationMode
-    @State private var searchText = ""
-
+    @State private var searchTextLoad = ""
+    @State private var searchTextAdd = ""
+    
     var tracklist = asmrTrack.TrackList()
     var body: some View {
         TabView{
@@ -28,7 +29,7 @@ struct loadAsmr: View, Equatable {
             VStack{
                 TextField(
                     "Search your library",
-                    text: $searchText
+                    text: $searchTextLoad
                 )
                     .padding()
                     .onAppear {
@@ -43,7 +44,7 @@ struct loadAsmr: View, Equatable {
                     }
 
                 List {
-                    ForEach(store.asmrTracks, id: \.self) {audio in
+                    ForEach(searchResultsLoad, id: \.self) {audio in
                             Text(audio.title).onTapGesture {
                                 asmrtrack = audio
                                 print("Song changed to \(audio.title).")
@@ -70,12 +71,12 @@ struct loadAsmr: View, Equatable {
             VStack{
                 TextField(
                     "Search your library",
-                    text: $searchText
+                    text: $searchTextAdd
                 )
                     .padding()
 
                 List {
-                    ForEach(searchResults, id: \.self) {audio in
+                    ForEach(searchResultsAdd, id: \.self) {audio in
                             Text(audio.title).onTapGesture {
 //                                asmrtrack = audio
 //                                print("Song changed to \(audio.title).")
@@ -104,11 +105,19 @@ struct loadAsmr: View, Equatable {
         return Array(asmrset1.subtracting(asmrset2).sorted())
     }
     
-    var searchResults: [asmrTrack] {
-        if searchText.isEmpty {
+    var searchResultsLoad: [asmrTrack] {
+        if searchTextLoad.isEmpty {
+            return store.asmrTracks
+        } else {
+            return store.asmrTracks.filter {$0.title.lowercased().contains(searchTextLoad.lowercased())}
+        }
+    }
+    
+    var searchResultsAdd: [asmrTrack] {
+        if searchTextAdd.isEmpty {
             return subtractedAddList
         } else {
-            return subtractedAddList.filter {$0.title.lowercased().contains(searchText.lowercased())}
+            return subtractedAddList.filter {$0.title.lowercased().contains(searchTextAdd.lowercased())}
         }
     }
 }

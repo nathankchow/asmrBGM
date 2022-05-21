@@ -6,7 +6,6 @@ import Combine
 import AVFAudio
 
 
-#warning ("TODO fix text search logic in load asmr/bgm")
 #warning ("TODO add album playing mode")
 #warning ("TODO add way to delete indivudal tracks in load asmr/bgm")
 #warning ("TODO refurbish UI")
@@ -40,6 +39,9 @@ struct asperi: View {
                     NavigationLink(destination: loadBgm(bgmtrack: self.$audiosettings.bgmtrack).equatable(), tag: 2, selection: $page) {
                         EmptyView()
                     }
+                    NavigationLink(destination: loadAlbum().equatable(), tag: 3, selection: $page) {
+                        EmptyView()
+                    }
                 }
                 
                 Group {
@@ -54,6 +56,11 @@ struct asperi: View {
                         self.page = 2
                     }) {
                         Text("Load BGM file")
+                    }
+                    Button(action:{
+                        self.page = 3
+                    }) {
+                        Text("Load Album")
                     }
                 }.onChange(of: self.$audiosettings.asmrtrack.wrappedValue) { _ in
                     if (self.playButton == Image(systemName: "play.circle")) {

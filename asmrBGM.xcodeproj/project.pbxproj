@@ -16,11 +16,13 @@
 		C2980BC728266743000F91CE /* bgmTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BC628266743000F91CE /* bgmTrack.swift */; };
 		C2980BC928266A3F000F91CE /* loadBgm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BC828266A3F000F91CE /* loadBgm.swift */; };
 		C2980BCE28267E3D000F91CE /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2980BCD28267E3D000F91CE /* libswiftWebKit.tbd */; };
-		C2AAFEE52820CE9B00BBBB7D /* loadAsmr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */; };
 		C2AED0EB2807B8F7003E437D /* asmrBGMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */; };
 		C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AED0EC2807B8F7003E437D /* ContentView.swift */; };
 		C2AED0EF2807B8F9003E437D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2AED0EE2807B8F9003E437D /* Assets.xcassets */; };
 		C2AED0F22807B8F9003E437D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2AED0F12807B8F9003E437D /* Preview Assets.xcassets */; };
+		C2B482E62834F48100797FBD /* loadAsmr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B482E52834F48100797FBD /* loadAsmr.swift */; };
+		C2B482E82834F49C00797FBD /* loadAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B482E72834F49C00797FBD /* loadAlbum.swift */; };
+		C2B482EA2834F50D00797FBD /* asmrAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B482E92834F50D00797FBD /* asmrAlbum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,13 +35,15 @@
 		C2980BC628266743000F91CE /* bgmTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bgmTrack.swift; sourceTree = "<group>"; };
 		C2980BC828266A3F000F91CE /* loadBgm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadBgm.swift; sourceTree = "<group>"; };
 		C2980BCD28267E3D000F91CE /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
-		C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadAsmr.swift; sourceTree = "<group>"; };
 		C2AED0E72807B8F7003E437D /* asmrBGM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = asmrBGM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrBGMApp.swift; sourceTree = "<group>"; };
 		C2AED0EC2807B8F7003E437D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C2AED0EE2807B8F9003E437D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2AED0F12807B8F9003E437D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C2AED0F82807B95F003E437D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C2B482E52834F48100797FBD /* loadAsmr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = loadAsmr.swift; path = ../../../.Trash/loadAsmr.swift; sourceTree = "<group>"; };
+		C2B482E72834F49C00797FBD /* loadAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadAlbum.swift; sourceTree = "<group>"; };
+		C2B482E92834F50D00797FBD /* asmrAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrAlbum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 				C2980BC628266743000F91CE /* bgmTrack.swift */,
 				C2770234282FA02B00229F4B /* asmrTrackStore.swift */,
 				C2770237282FAD0800229F4B /* BgmTrackStore.swift */,
+				C2B482E92834F50D00797FBD /* asmrAlbum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,8 +100,9 @@
 		C2AED0E92807B8F7003E437D /* asmrBGM */ = {
 			isa = PBXGroup;
 			children = (
+				C2B482E72834F49C00797FBD /* loadAlbum.swift */,
+				C2B482E52834F48100797FBD /* loadAsmr.swift */,
 				C2777F8B282473080032429A /* localAudio.swift */,
-				C2AAFEE42820CE9B00BBBB7D /* loadAsmr.swift */,
 				C2980BC828266A3F000F91CE /* loadBgm.swift */,
 				C24108D32813BFD7001E9C74 /* asperi.swift */,
 				C2AED0F82807B95F003E437D /* Info.plist */,
@@ -186,13 +192,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B482E62834F48100797FBD /* loadAsmr.swift in Sources */,
 				C2770235282FA02B00229F4B /* asmrTrackStore.swift in Sources */,
-				C2AAFEE52820CE9B00BBBB7D /* loadAsmr.swift in Sources */,
+				C2B482EA2834F50D00797FBD /* asmrAlbum.swift in Sources */,
 				C2980BC928266A3F000F91CE /* loadBgm.swift in Sources */,
 				C24108D42813BFD7001E9C74 /* asperi.swift in Sources */,
 				C2777F8E2824F7020032429A /* asmrTrack.swift in Sources */,
 				C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */,
 				C2770238282FAD0800229F4B /* BgmTrackStore.swift in Sources */,
+				C2B482E82834F49C00797FBD /* loadAlbum.swift in Sources */,
 				C2980BC728266743000F91CE /* bgmTrack.swift in Sources */,
 				C2777F8A282472290032429A /* audioSettings.swift in Sources */,
 				C2777F8C282473080032429A /* localAudio.swift in Sources */,

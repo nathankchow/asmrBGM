@@ -18,6 +18,8 @@ struct asmrTrack: Identifiable, Equatable, Hashable, Codable, Comparable {
     var assetURL: URL?
     var artist: String
     var duration: TimeInterval
+    var albumTitle: String
+    var albumPersistentID: MPMediaEntityPersistentID?
     
     
     init(_ mpmediaitem: MPMediaItem?) {
@@ -26,12 +28,15 @@ struct asmrTrack: Identifiable, Equatable, Hashable, Codable, Comparable {
             assetURL = item.assetURL
             artist = item.artist ?? ""
             duration = item.playbackDuration
-
+            albumTitle = item.albumTitle ?? "Untitled"
+            albumPersistentID = item.albumPersistentID
         } else {
             title = "No Title"
             assetURL = nil
             artist = "---"
             duration = TimeInterval(0.0)
+            albumTitle = "Untitled"
+            albumPersistentID = nil
         }
         id = UUID()
     }
@@ -45,6 +50,7 @@ struct asmrTrack: Identifiable, Equatable, Hashable, Codable, Comparable {
         tracklist.append(asmrTrack(nil))
         return tracklist
     }
+    
     
     static func < (lhs: asmrTrack, rhs: asmrTrack) -> Bool {
         return lhs.title < rhs.title

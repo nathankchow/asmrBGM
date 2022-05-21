@@ -28,11 +28,11 @@ struct loadAlbum: View, Equatable {
         let albums = asmrAlbum.AlbumList()
         List {
             ForEach(albums, id: \.self) {album in
-                Text("\(album.albumTitle) \(album.songs.count)").onTapGesture {
+                Text("\(album.albumTitle)").onTapGesture {
                         print("Song changed to \(album.albumTitle).")
                     }
-                ForEach(album.songs, id: \.title) { song in
-                    Text("    \(song.title)")
+                ForEach(album.songs, id: \.self) { song in
+                    Text("\(song.title)").padding(.leading)
                 }
 
             }

@@ -39,13 +39,17 @@ struct asmrAlbum: Identifiable, Equatable, Hashable, Codable, Comparable {
             if (item.albumPersistentID == albumPersistentID) {
                 tracklist.append(item)
             } else {
-                albumlist.append(asmrAlbum(songlist: tracklist))
+                if (tracklist[0].albumTitle != "") {
+                    albumlist.append(asmrAlbum(songlist: tracklist))
+                }
                 tracklist = [item]
                 albumPersistentID = item.albumPersistentID!
             }
         }
         if (tracklist.count > 0) {
-            albumlist.append(asmrAlbum(songlist: tracklist))
+            if (tracklist[0].albumTitle != "") {
+                albumlist.append(asmrAlbum(songlist: tracklist))
+            }
         }
         return albumlist
     }

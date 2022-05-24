@@ -36,7 +36,8 @@ struct loadBgm: View, Equatable {
                         BgmTrackStore.load {result in
                             switch result {
                             case .failure(let error):
-                                fatalError(error.localizedDescription)
+                                print(error)
+                                store.bgmTracks = []
                             case .success (let bgmtracks):
                                 store.bgmTracks = bgmtracks
                             }

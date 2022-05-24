@@ -67,6 +67,7 @@
 				C2770234282FA02B00229F4B /* asmrTrackStore.swift */,
 				C2770237282FAD0800229F4B /* BgmTrackStore.swift */,
 				C2B482E92834F50D00797FBD /* asmrAlbum.swift */,
+				C2777F8B282473080032429A /* localAudio.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -100,11 +101,10 @@
 		C2AED0E92807B8F7003E437D /* asmrBGM */ = {
 			isa = PBXGroup;
 			children = (
+				C24108D32813BFD7001E9C74 /* asperi.swift */,
 				C2B482E72834F49C00797FBD /* loadAlbum.swift */,
 				C2B482E52834F48100797FBD /* loadAsmr.swift */,
-				C2777F8B282473080032429A /* localAudio.swift */,
 				C2980BC828266A3F000F91CE /* loadBgm.swift */,
-				C24108D32813BFD7001E9C74 /* asperi.swift */,
 				C2AED0F82807B95F003E437D /* Info.plist */,
 				C2AED0EA2807B8F7003E437D /* asmrBGMApp.swift */,
 				C2AED0EC2807B8F7003E437D /* ContentView.swift */,

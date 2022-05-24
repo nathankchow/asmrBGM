@@ -8,6 +8,7 @@ import AVFAudio
 
 #warning ("TODO add album playing mode")
 #warning ("TODO add way to delete indivudal tracks in load asmr/bgm")
+#warning ("TODO add ")
 #warning ("TODO refurbish UI")
 
 struct asperi: View {

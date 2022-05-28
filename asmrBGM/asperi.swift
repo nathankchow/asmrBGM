@@ -17,6 +17,21 @@ struct asperi: View {
     @State private var playButton: Image = Image(systemName: "play.circle")
     @State private var page: Int? = 0
     
+    func getPlayPauseButton() -> Image {
+        if (self.audiosettings.playing) {
+            return Image(systemName: "pause.circle")
+        } else{
+            return Image(systemName: "play.circle")
+        }
+    }
+    
+
+    
+    func debug() {
+        print(self.audiosettings.asmralbum.songs.count)
+        print(self.audiosettings.asmralbum.albumTitle)
+    }
+    
     func pauseToPlay() {
         self.audiosettings.stopSound()
         if (self.playButton == Image(systemName: "pause.circle")) {
@@ -94,6 +109,8 @@ struct asperi: View {
                                 self.audiosettings.playValue = currentTime
                             
                                 if currentTime == TimeInterval(0.0) {
+                                    print("Calling next?")
+                                    self.audiosettings.next()
                                     self.audiosettings.playing = false
                                     self.playButton = Image(systemName: "play.circle")
                                 }
@@ -102,6 +119,7 @@ struct asperi: View {
                         
                     }
                     else {
+                        print("CANCELLED?")
                         self.audiosettings.playing = false
                         self.audiosettings.timer.upstream.connect().cancel()
                         self.audiosettings.bgmPlayer?.stop()
@@ -110,6 +128,14 @@ struct asperi: View {
                 }
                 .padding(.leading)
                 .padding(.trailing)
+                    HStack{
+                    
+                    Button(action: self.audiosettings.previous) {
+                        Image(systemName: "backward.fill")
+                    }
+                            .font(.system(size: 22))
+                            .disabled(self.audiosettings.asmralbum.songs.count == 0)
+
                     
                     Button(action: {
                         if (self.audiosettings.asmrtrack.assetURL == nil && self.audiosettings.bgmtrack.assetURL == nil) {
@@ -141,26 +167,21 @@ struct asperi: View {
                             self.playButton = Image(systemName: "play.circle")
                         }
                     }) {
-                        HStack{
-                            Button(action: self.audiosettings.previous) {
-                                Image(systemName: "backward.fill")
-                                    .foregroundColor(Color.blue)
-                                    .font(.system(size: 22))
-                                    .disabled(self.audiosettings.asmralbum.songs.count == 0)
-                            }
+
+
                             self.playButton
                             .foregroundColor(Color.blue)
                             .font(.system(size: 44))
-                            
-                            
-                                Button(action: self.audiosettings.next) {
-                                    Image(systemName: "forward.fill")
-                                        .foregroundColor(Color.blue)
-                                        .font(.system(size: 22))
-                                        .disabled(self.audiosettings.asmralbum.songs.count == 0)
-                                }
-                        }
+
                     }
+                            
+                            Button(action: self.audiosettings.next) {
+                                Image(systemName: "forward.fill")
+                            }
+                                    .font(.system(size: 22))
+                                    .disabled(self.audiosettings.asmralbum.songs.count == 0)
+                    }                            .buttonStyle(BorderlessButtonStyle())
+          
                     
                     Slider(
                         value: Binding(get: {
@@ -185,6 +206,11 @@ struct asperi: View {
                     step: 1)
                         .padding(.leading)
                         .padding(.trailing)
+                    Button(action: self.debug) {
+                        Text("Debugging Button")
+                    }
+                    
+                    
 //                Button(action: {
 //                    self.audiosettings.changeSong()
 //                    self.pauseToPlay()

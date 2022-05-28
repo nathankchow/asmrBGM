@@ -16,7 +16,7 @@ class audioSettings: ObservableObject {
     
     var asmrPlayer: AVAudioPlayer?
     var bgmPlayer: AVAudioPlayer?
-    var playing = false
+    @Published var playing = false
     @Published var asmrVolume: Float = 100.0
     @Published var bgmVolume: Float = 100.0
     @Published var playValue: TimeInterval = 0.0
@@ -35,7 +35,7 @@ class audioSettings: ObservableObject {
         didSet {
             self.stopSound()
             self.playAsmrTrack()
-            if (self.inAlbum()) {
+            if (!self.inAlbum()) {
                 self.clearAlbum()
             }
         }
@@ -170,6 +170,7 @@ class audioSettings: ObservableObject {
     
 
     func changeSliderValue() {
+
         if playing == true {
             if !isPositionEditing {
                 pauseSound()
@@ -200,10 +201,29 @@ class audioSettings: ObservableObject {
     }
     
     func previous() {
-        print("previous")
+        if (self.asmralbum.songs.count == 0) {
+            return
+        }
+        if (self.albumPointer == 0) {
+            self.albumPointer = self.asmralbum.songs.count - 1
+        } else {
+            self.albumPointer -= 1
+        }
+        self.asmrtrack = self.asmralbum.songs[self.albumPointer]
     }
     
     func next() {
-        print("next")
+        if (self.asmralbum.songs.count == 0) {
+            return
+        }
+        if (self.albumPointer == self.asmralbum.songs.count-1) {
+            self.albumPointer = 0
+            self.asmrtrack = self.asmralbum.songs[self.albumPointer]
+            self.stopSound()
+        } else {
+            self.albumPointer += 1
+            self.asmrtrack = self.asmralbum.songs[self.albumPointer]
+        }
+
     }
 }

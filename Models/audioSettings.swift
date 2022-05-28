@@ -21,10 +21,23 @@ class audioSettings: ObservableObject {
     @Published var bgmVolume: Float = 100.0
     @Published var playValue: TimeInterval = 0.0
     @Published var playerDuration: TimeInterval? = 0.0
+    @Published var albumPointer: Int = -1
+    @Published var asmralbum = asmrAlbum([]) {
+        didSet {
+            if (self.asmralbum.albumPersistentID != nil) {
+                self.stopSound()
+                self.albumPointer = 0
+                self.asmrtrack = self.asmralbum.songs[0]
+            }
+        }
+    }
     @Published var asmrtrack = asmrTrack(nil) {
         didSet {
             self.stopSound()
             self.playAsmrTrack()
+            if (self.inAlbum()) {
+                self.clearAlbum()
+            }
         }
     }
     @Published var bgmtrack = bgmTrack(nil) {
@@ -33,6 +46,7 @@ class audioSettings: ObservableObject {
             self.playBgmTrack()
         }
     }
+//    @Published var asmralbum: asmrAlbum
     
     init() {
         do {
@@ -55,6 +69,10 @@ class audioSettings: ObservableObject {
     func playAsmrTrack() {
         print("Sugondese nuts")
         self.playAsmrURL()
+    }
+    
+    func inAlbum() -> Bool {
+        return self.asmralbum.songs.contains(self.asmrtrack)
     }
     
     func playSound(sound: String, type: String) {
@@ -174,5 +192,18 @@ class audioSettings: ObservableObject {
         } else {
             testSound = "sugar"
         }
+    }
+    
+    func clearAlbum() {
+        self.asmralbum = asmrAlbum([])
+        self.albumPointer = -1
+    }
+    
+    func previous() {
+        print("previous")
+    }
+    
+    func next() {
+        print("next")
     }
 }

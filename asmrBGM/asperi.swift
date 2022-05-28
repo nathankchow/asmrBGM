@@ -40,7 +40,7 @@ struct asperi: View {
                     NavigationLink(destination: loadBgm(bgmtrack: self.$audiosettings.bgmtrack).equatable(), tag: 2, selection: $page) {
                         EmptyView()
                     }
-                    NavigationLink(destination: loadAlbum().equatable(), tag: 3, selection: $page) {
+                    NavigationLink(destination: loadAlbum(asmralbum: self.$audiosettings.asmralbum).equatable(), tag: 3, selection: $page) {
                         EmptyView()
                     }
                 }
@@ -141,9 +141,25 @@ struct asperi: View {
                             self.playButton = Image(systemName: "play.circle")
                         }
                     }) {
-                        self.playButton
+                        HStack{
+                            Button(action: self.audiosettings.previous) {
+                                Image(systemName: "backward.fill")
+                                    .foregroundColor(Color.blue)
+                                    .font(.system(size: 22))
+                                    .disabled(self.audiosettings.asmralbum.songs.count == 0)
+                            }
+                            self.playButton
                             .foregroundColor(Color.blue)
                             .font(.system(size: 44))
+                            
+                            
+                                Button(action: self.audiosettings.next) {
+                                    Image(systemName: "forward.fill")
+                                        .foregroundColor(Color.blue)
+                                        .font(.system(size: 22))
+                                        .disabled(self.audiosettings.asmralbum.songs.count == 0)
+                                }
+                        }
                     }
                     
                     Slider(

@@ -15,6 +15,12 @@ import Combine
 //dont forget to consider a case where only half of the tracks are labeled with an album 
 
 struct loadAlbum: View, Equatable {
+    static func == (lhs: loadAlbum, rhs: loadAlbum) -> Bool {
+        return true
+    }
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var asmralbum: asmrAlbum
+
     var body: some View {
 //        let songs = MPMediaQuery.albums().items ?? []
 //        Text("This page is for albumns").onAppear{
@@ -29,7 +35,9 @@ struct loadAlbum: View, Equatable {
         List {
             ForEach(albums, id: \.self) {album in
                 Text("\(album.albumTitle)").onTapGesture {
+                    asmralbum = album
                         print("Song changed to \(album.albumTitle).")
+                    presentationMode.wrappedValue.dismiss()
                     }
                 ForEach(album.songs, id: \.self) { song in
                     Text("\(song.title)").padding(.leading)
@@ -42,6 +50,6 @@ struct loadAlbum: View, Equatable {
 
 struct loadAlbum_Previews: PreviewProvider {
     static var previews: some View {
-        loadAlbum()
+        loadAlbum(asmralbum: .constant(asmrAlbum([])))
     }
 }

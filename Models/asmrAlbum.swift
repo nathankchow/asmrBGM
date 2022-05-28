@@ -15,14 +15,21 @@ struct asmrAlbum: Identifiable, Equatable, Hashable, Codable, Comparable {
 
     let id: UUID
     var albumTitle: String
-    var albumPersistentID: MPMediaEntityPersistentID
+    var albumPersistentID: MPMediaEntityPersistentID?
     var songs: [asmrTrack]
 
-    init(songlist: [asmrTrack]) {
-        albumTitle = songlist[0].albumTitle
-        albumPersistentID = songlist[0].albumPersistentID!
-        songs = songlist
-        id = UUID()
+    init(_ songlist: [asmrTrack]) {
+        if (songlist.count == 0){
+            albumTitle = ""
+            albumPersistentID = nil
+            songs = []
+            id = UUID()
+        } else {
+            albumTitle = songlist[0].albumTitle
+            albumPersistentID = songlist[0].albumPersistentID
+            songs = songlist
+            id = UUID()
+        }
     }
 
     static func AlbumList() -> [asmrAlbum] {
@@ -40,7 +47,7 @@ struct asmrAlbum: Identifiable, Equatable, Hashable, Codable, Comparable {
                 tracklist.append(item)
             } else {
                 if (tracklist[0].albumTitle != "") {
-                    albumlist.append(asmrAlbum(songlist: tracklist))
+                    albumlist.append(asmrAlbum( tracklist))
                 }
                 tracklist = [item]
                 albumPersistentID = item.albumPersistentID!
@@ -48,7 +55,7 @@ struct asmrAlbum: Identifiable, Equatable, Hashable, Codable, Comparable {
         }
         if (tracklist.count > 0) {
             if (tracklist[0].albumTitle != "") {
-                albumlist.append(asmrAlbum(songlist: tracklist))
+                albumlist.append(asmrAlbum(tracklist))
             }
         }
         return albumlist

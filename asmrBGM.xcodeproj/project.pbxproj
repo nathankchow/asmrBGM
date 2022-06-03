@@ -13,14 +13,7 @@
 		C2777F8A282472290032429A /* audioSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2777F89282472290032429A /* audioSettings.swift */; };
 		C2777F8C282473080032429A /* localAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2777F8B282473080032429A /* localAudio.swift */; };
 		C2777F8E2824F7020032429A /* asmrTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2777F8D2824F7020032429A /* asmrTrack.swift */; };
-		C2916C202849F5F100A89E6F /* loadAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C172849F5F100A89E6F /* loadAlbum.swift */; };
-		C2916C212849F5F100A89E6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2916C182849F5F100A89E6F /* Assets.xcassets */; };
-		C2916C222849F5F100A89E6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2916C1A2849F5F100A89E6F /* Preview Assets.xcassets */; };
-		C2916C232849F5F100A89E6F /* loadAsmr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C1B2849F5F100A89E6F /* loadAsmr.swift */; };
-		C2916C242849F5F100A89E6F /* asmrBGMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C1C2849F5F100A89E6F /* asmrBGMApp.swift */; };
-		C2916C252849F5F100A89E6F /* asperi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C1D2849F5F100A89E6F /* asperi.swift */; };
-		C2916C262849F5F100A89E6F /* loadBgm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C1E2849F5F100A89E6F /* loadBgm.swift */; };
-		C2916C272849F5F100A89E6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C1F2849F5F100A89E6F /* ContentView.swift */; };
+		C2916C542849F87B00A89E6F /* loadAsmr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C532849F87B00A89E6F /* loadAsmr.swift */; };
 		C2980BC728266743000F91CE /* bgmTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BC628266743000F91CE /* bgmTrack.swift */; };
 		C2980BC928266A3F000F91CE /* loadBgm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BC828266A3F000F91CE /* loadBgm.swift */; };
 		C2980BCE28267E3D000F91CE /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2980BCD28267E3D000F91CE /* libswiftWebKit.tbd */; };
@@ -39,14 +32,7 @@
 		C2777F89282472290032429A /* audioSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioSettings.swift; sourceTree = "<group>"; };
 		C2777F8B282473080032429A /* localAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localAudio.swift; sourceTree = "<group>"; };
 		C2777F8D2824F7020032429A /* asmrTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrTrack.swift; sourceTree = "<group>"; };
-		C2916C172849F5F100A89E6F /* loadAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadAlbum.swift; sourceTree = "<group>"; };
-		C2916C182849F5F100A89E6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C2916C1A2849F5F100A89E6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C2916C1B2849F5F100A89E6F /* loadAsmr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadAsmr.swift; sourceTree = "<group>"; };
-		C2916C1C2849F5F100A89E6F /* asmrBGMApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = asmrBGMApp.swift; sourceTree = "<group>"; };
-		C2916C1D2849F5F100A89E6F /* asperi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = asperi.swift; sourceTree = "<group>"; };
-		C2916C1E2849F5F100A89E6F /* loadBgm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadBgm.swift; sourceTree = "<group>"; };
-		C2916C1F2849F5F100A89E6F /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C2916C532849F87B00A89E6F /* loadAsmr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadAsmr.swift; sourceTree = "<group>"; };
 		C2980BC628266743000F91CE /* bgmTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bgmTrack.swift; sourceTree = "<group>"; };
 		C2980BC828266A3F000F91CE /* loadBgm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadBgm.swift; sourceTree = "<group>"; };
 		C2980BCD28267E3D000F91CE /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
@@ -76,38 +62,14 @@
 			isa = PBXGroup;
 			children = (
 				C2777F89282472290032429A /* audioSettings.swift */,
+				C2777F8B282473080032429A /* localAudio.swift */,
 				C2777F8D2824F7020032429A /* asmrTrack.swift */,
+				C2B482E92834F50D00797FBD /* asmrAlbum.swift */,
 				C2980BC628266743000F91CE /* bgmTrack.swift */,
-				C2916C162849F5F100A89E6F /* asmrBGM */,
 				C2770234282FA02B00229F4B /* asmrTrackStore.swift */,
 				C2770237282FAD0800229F4B /* BgmTrackStore.swift */,
-				C2B482E92834F50D00797FBD /* asmrAlbum.swift */,
-				C2777F8B282473080032429A /* localAudio.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		C2916C162849F5F100A89E6F /* asmrBGM */ = {
-			isa = PBXGroup;
-			children = (
-				C2916C172849F5F100A89E6F /* loadAlbum.swift */,
-				C2916C182849F5F100A89E6F /* Assets.xcassets */,
-				C2916C192849F5F100A89E6F /* Preview Content */,
-				C2916C1B2849F5F100A89E6F /* loadAsmr.swift */,
-				C2916C1C2849F5F100A89E6F /* asmrBGMApp.swift */,
-				C2916C1D2849F5F100A89E6F /* asperi.swift */,
-				C2916C1E2849F5F100A89E6F /* loadBgm.swift */,
-				C2916C1F2849F5F100A89E6F /* ContentView.swift */,
-			);
-			path = asmrBGM;
-			sourceTree = SOURCE_ROOT;
-		};
-		C2916C192849F5F100A89E6F /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C2916C1A2849F5F100A89E6F /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		C2980BCC28267E3D000F91CE /* Frameworks */ = {
@@ -139,6 +101,7 @@
 		C2AED0E92807B8F7003E437D /* asmrBGM */ = {
 			isa = PBXGroup;
 			children = (
+				C2916C532849F87B00A89E6F /* loadAsmr.swift */,
 				C24108D32813BFD7001E9C74 /* asperi.swift */,
 				C2B482E72834F49C00797FBD /* loadAlbum.swift */,
 				C2980BC828266A3F000F91CE /* loadBgm.swift */,
@@ -217,9 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2916C222849F5F100A89E6F /* Preview Assets.xcassets in Resources */,
 				C2AED0F22807B8F9003E437D /* Preview Assets.xcassets in Resources */,
-				C2916C212849F5F100A89E6F /* Assets.xcassets in Resources */,
 				C2AED0EF2807B8F9003E437D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,17 +198,12 @@
 				C24108D42813BFD7001E9C74 /* asperi.swift in Sources */,
 				C2777F8E2824F7020032429A /* asmrTrack.swift in Sources */,
 				C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */,
-				C2916C232849F5F100A89E6F /* loadAsmr.swift in Sources */,
 				C2770238282FAD0800229F4B /* BgmTrackStore.swift in Sources */,
-				C2916C242849F5F100A89E6F /* asmrBGMApp.swift in Sources */,
 				C2B482E82834F49C00797FBD /* loadAlbum.swift in Sources */,
-				C2916C202849F5F100A89E6F /* loadAlbum.swift in Sources */,
-				C2916C252849F5F100A89E6F /* asperi.swift in Sources */,
 				C2980BC728266743000F91CE /* bgmTrack.swift in Sources */,
-				C2916C262849F5F100A89E6F /* loadBgm.swift in Sources */,
-				C2916C272849F5F100A89E6F /* ContentView.swift in Sources */,
 				C2777F8A282472290032429A /* audioSettings.swift in Sources */,
 				C2777F8C282473080032429A /* localAudio.swift in Sources */,
+				C2916C542849F87B00A89E6F /* loadAsmr.swift in Sources */,
 				C2AED0EB2807B8F7003E437D /* asmrBGMApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

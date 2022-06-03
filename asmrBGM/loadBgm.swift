@@ -45,13 +45,17 @@ struct loadBgm: View, Equatable {
                     }
 
                 List {
-                    ForEach(searchResultsLoad, id: \.self) {audio in
-                            Text(audio.title).onTapGesture {
+                    ForEach(searchResultsLoad, id: \.self)
+                        {audio in
+                            HStack{
+                                Text(audio.title)
+                                Spacer()
+                            }.contentShape(Rectangle())
+                                .onTapGesture {
                                 bgmtrack = audio
                                 print("Song changed to \(audio.title).")
                                 presentationMode.wrappedValue.dismiss()
                             }
-
                     }.onDelete(perform: delete)
                 }
                 Button(action: {

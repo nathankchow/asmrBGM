@@ -19,7 +19,7 @@ struct loadAlbum: View, Equatable {
         return true
     }
     
-    @StateObject private var store = AsmrTrackStore()
+    @StateObject private var store = AsmrAlbumStore()
     @Environment(\.presentationMode) var presentationMode
     @Binding var asmralbum: asmrAlbum
     @State private var searchTextLoad = ""
@@ -28,6 +28,76 @@ struct loadAlbum: View, Equatable {
     var albumlist = asmrAlbum.AlbumList()
 
     var body: some View {
+        TabView {
+            VStack{
+                TextField(
+                    "Search your library",
+                    text: $searchTextLoad
+                )
+                    .padding()
+                    .onAppear {
+                        AsmrAlbumStore.load {result in
+                            switch result {
+                            case .failure (let error):
+                                print(error.localizedDescription)
+                                store.asmrAlbums = []
+                            
+                            case .success (let asmralbums):
+                            store.asmrAlbums = asmralbums
+                            }
+                        }
+                    }
+                List {
+                    ForEach(searchResultsLoad, id: \.self) {album in
+                        HStack{
+                            Text(album.albumTitle)
+                            Spacer()
+                        }.contentShape(Rectangle())
+                            .onTapGesture {
+                                asmralbum = album
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        ForEach(album.songs, id: \.self) {song in
+                            Text("\(song.title)").padding(.leading)
+                        }
+                        
+                    }
+                }
+                
+                Button(action: {
+                    store.asmrAlbums = []
+                    save()
+                }) {
+                    Text("CLEAR ALL ALBUMS")
+                }
+            }.tabItem {
+                Image(systemName: "play.circle")
+                Text("Load")
+            }
+            
+            VStack {
+                TextField(
+                    "Search your library",
+                    text: $searchTextAdd
+                )
+                    .padding()
+                List {
+                    ForEach(searchResultsAdd, id: \.self) {album in
+                        Text(album.albumTitle).onTapGesture {
+                            store.asmrAlbums.append(album)
+                            save()
+                        }
+                        ForEach(album.songs, id: \.self) {song in
+                            Text("\(song.title)").padding(.leading)
+                        }
+                        
+                    }
+                }
+            }.tabItem {
+                Image(systemName: "pause.circle")
+                Text("Add")
+            }
+        }
 //        let songs = MPMediaQuery.albums().items ?? []
 //        Text("This page is for albumns").onAppear{
 //            print("Gonna print some songs")
@@ -38,17 +108,25 @@ struct loadAlbum: View, Equatable {
 //            }
 //        }
         let albums = asmrAlbum.AlbumList()
-        List {
-            ForEach(albums, id: \.self) {album in
-                Text("\(album.albumTitle)").onTapGesture {
-                    asmralbum = album
-                        print("Song changed to \(album.albumTitle).")
-                    presentationMode.wrappedValue.dismiss()
-                    }
-                ForEach(album.songs, id: \.self) { song in
-                    Text("\(song.title)").padding(.leading)
-                }
-
+    }
+    var subtractedAddList: [asmrAlbum] {
+        return albumlist
+    }
+    
+    var searchResultsLoad: [asmrAlbum] {
+        if searchTextLoad.isEmpty {
+            return store.asmrAlbums
+        } else {
+            return []
+        }
+    }
+    
+    var searchResultsAdd: [asmrAlbum] = asmrAlbum.AlbumList()
+    
+    func save() {
+        AsmrAlbumStore.save(asmralbums: store.asmrAlbums) {result in
+            if case .failure (let error) = result {
+                fatalError(error.localizedDescription)
             }
         }
     }
@@ -59,3 +137,19 @@ struct loadAlbum_Previews: PreviewProvider {
         loadAlbum(asmralbum: .constant(asmrAlbum([])))
     }
 }
+
+
+
+//List {
+//    ForEach(albums, id: \.self) {album in
+//        Text("\(album.albumTitle)").onTapGesture {
+//            asmralbum = album
+//                print("Song changed to \(album.albumTitle).")
+//            presentationMode.wrappedValue.dismiss()
+//            }
+//        ForEach(album.songs, id: \.self) { song in
+//            Text("\(song.title)").padding(.leading)
+//        }
+//
+//    }
+//}

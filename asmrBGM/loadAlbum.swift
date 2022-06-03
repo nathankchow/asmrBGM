@@ -18,8 +18,14 @@ struct loadAlbum: View, Equatable {
     static func == (lhs: loadAlbum, rhs: loadAlbum) -> Bool {
         return true
     }
+    
+    @StateObject private var store = AsmrTrackStore()
     @Environment(\.presentationMode) var presentationMode
     @Binding var asmralbum: asmrAlbum
+    @State private var searchTextLoad = ""
+    @State private var searchTextAdd = ""
+    
+    var albumlist = asmrAlbum.AlbumList()
 
     var body: some View {
 //        let songs = MPMediaQuery.albums().items ?? []

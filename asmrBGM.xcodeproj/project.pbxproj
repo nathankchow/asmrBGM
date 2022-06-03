@@ -14,6 +14,7 @@
 		C2777F8C282473080032429A /* localAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2777F8B282473080032429A /* localAudio.swift */; };
 		C2777F8E2824F7020032429A /* asmrTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2777F8D2824F7020032429A /* asmrTrack.swift */; };
 		C2916C542849F87B00A89E6F /* loadAsmr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C532849F87B00A89E6F /* loadAsmr.swift */; };
+		C2916C562849FB7000A89E6F /* asmrAlbumStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2916C552849FB7000A89E6F /* asmrAlbumStore.swift */; };
 		C2980BC728266743000F91CE /* bgmTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BC628266743000F91CE /* bgmTrack.swift */; };
 		C2980BC928266A3F000F91CE /* loadBgm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2980BC828266A3F000F91CE /* loadBgm.swift */; };
 		C2980BCE28267E3D000F91CE /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2980BCD28267E3D000F91CE /* libswiftWebKit.tbd */; };
@@ -33,6 +34,7 @@
 		C2777F8B282473080032429A /* localAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localAudio.swift; sourceTree = "<group>"; };
 		C2777F8D2824F7020032429A /* asmrTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrTrack.swift; sourceTree = "<group>"; };
 		C2916C532849F87B00A89E6F /* loadAsmr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadAsmr.swift; sourceTree = "<group>"; };
+		C2916C552849FB7000A89E6F /* asmrAlbumStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asmrAlbumStore.swift; sourceTree = "<group>"; };
 		C2980BC628266743000F91CE /* bgmTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bgmTrack.swift; sourceTree = "<group>"; };
 		C2980BC828266A3F000F91CE /* loadBgm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadBgm.swift; sourceTree = "<group>"; };
 		C2980BCD28267E3D000F91CE /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
@@ -67,6 +69,7 @@
 				C2B482E92834F50D00797FBD /* asmrAlbum.swift */,
 				C2980BC628266743000F91CE /* bgmTrack.swift */,
 				C2770234282FA02B00229F4B /* asmrTrackStore.swift */,
+				C2916C552849FB7000A89E6F /* asmrAlbumStore.swift */,
 				C2770237282FAD0800229F4B /* BgmTrackStore.swift */,
 			);
 			path = Models;
@@ -200,6 +203,7 @@
 				C2AED0ED2807B8F7003E437D /* ContentView.swift in Sources */,
 				C2770238282FAD0800229F4B /* BgmTrackStore.swift in Sources */,
 				C2B482E82834F49C00797FBD /* loadAlbum.swift in Sources */,
+				C2916C562849FB7000A89E6F /* asmrAlbumStore.swift in Sources */,
 				C2980BC728266743000F91CE /* bgmTrack.swift in Sources */,
 				C2777F8A282472290032429A /* audioSettings.swift in Sources */,
 				C2777F8C282473080032429A /* localAudio.swift in Sources */,

@@ -52,7 +52,7 @@ struct loadBgm: View, Equatable {
                                 presentationMode.wrappedValue.dismiss()
                             }
 
-                    }
+                    }.onDelete(perform: delete)
                 }
                 Button(action: {
                     store.bgmTracks = []
@@ -118,6 +118,22 @@ struct loadBgm: View, Equatable {
             return subtractedAddList
         } else {
             return subtractedAddList.filter {$0.title.lowercased().contains(searchTextAdd.lowercased())}
+        }
+    }
+    
+    func save() {
+        BgmTrackStore.save(bgmtracks: store.bgmTracks) { result in
+            if case .failure (let error) = result {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        let toDelete = searchResultsLoad[offsets.first!]
+        if let deleteFromStore = store.bgmTracks.firstIndex(of: toDelete) {
+            store.bgmTracks.remove(at: deleteFromStore)
+            save()
         }
     }
 }

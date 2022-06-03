@@ -58,6 +58,9 @@ struct asperi: View {
                     NavigationLink(destination: loadAlbum(asmralbum: self.$audiosettings.asmralbum).equatable(), tag: 3, selection: $page) {
                         EmptyView()
                     }
+                    NavigationLink(destination: loadBoth(asmralbum: self.$audiosettings.asmralbum, asmrtrack: self.$audiosettings.asmrtrack).equatable(), tag: 4, selection: $page) {
+                        EmptyView()
+                    }
                 }
                 
                 Group {
@@ -77,6 +80,11 @@ struct asperi: View {
                         self.page = 3
                     }) {
                         Text("Load Album")
+                    }
+                    Button(action:{
+                        self.page = 4
+                    }) {
+                        Text("Load Both")
                     }
                 }.onChange(of: self.$audiosettings.asmrtrack.wrappedValue) { _ in
                     if (self.playButton == Image(systemName: "play.circle")) {

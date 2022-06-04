@@ -9,13 +9,13 @@ import Foundation
 import MediaPlayer
 import AVKit
 
-enum asmrType {
+enum asmrType: Codable {
     case track
     case album
     case unknown
 }
 
-struct asmrEither: Identifiable, Equatable, Hashable, Comparable
+struct asmrEither: Identifiable, Equatable, Hashable, Comparable, Codable
 {
     let id: UUID
     var type: asmrType

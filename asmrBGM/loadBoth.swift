@@ -15,7 +15,8 @@ struct loadBoth: View, Equatable {
     @Binding var asmralbum: asmrAlbum
     @Binding var asmrtrack: asmrTrack
     @State private var searchTextLoad = ""
-    
+    @Environment(\.presentationMode) var presentationMode
+
     @ObservedObject private var trackstore = AsmrTrackStore()
     @ObservedObject private var albumstore = AsmrAlbumStore()
     var both: [asmrEither] {
@@ -26,6 +27,7 @@ struct loadBoth: View, Equatable {
         for album in albumstore.asmrAlbums {
             either.append(asmrEither(album))
         }
+        either.sort()
         return either
     }
     
@@ -34,10 +36,28 @@ struct loadBoth: View, Equatable {
             List{
                 ForEach(both, id: \.self) {item in
                     switch (item.type) {
-                    case (.album):
-                        Text(item.title)
                     case (.track):
-                        Text(item.title)
+                        HStack{
+                            Text(item.title)
+                            Spacer()
+                        }.contentShape(Rectangle())
+                            .onTapGesture {
+                                asmrtrack = item.track!
+                            print("Song changed to \(item.title).")
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    case (.album):
+                        HStack{
+                            Text(item.album!.albumTitle)
+                            Spacer()
+                        }.contentShape(Rectangle())
+                            .onTapGesture {
+                                asmralbum = item.album!
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        ForEach(item.album!.songs, id: \.self) {song in
+                            Text("\(song.title)").padding(.leading)
+                        }
                     default:
                         Text("Nothing")
                     }

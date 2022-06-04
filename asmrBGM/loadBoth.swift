@@ -14,6 +14,16 @@ struct loadBoth: View, Equatable {
     
     @Binding var asmralbum: asmrAlbum
     @Binding var asmrtrack: asmrTrack
+    @State private var searchTextLoad = ""
+    
+    let asmrstore = AsmrTrackStore()
+    let albumstore = AsmrAlbumStore()
+    var both: [Any] {
+        var both: [Any] = []
+        both.append(contentsOf: asmrstore.asmrTracks)
+        both.append(contentsOf: albumstore.asmrAlbums)
+        return both
+    }
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

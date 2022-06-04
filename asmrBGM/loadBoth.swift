@@ -16,17 +16,61 @@ struct loadBoth: View, Equatable {
     @Binding var asmrtrack: asmrTrack
     @State private var searchTextLoad = ""
     
-    let asmrstore = AsmrTrackStore()
-    let albumstore = AsmrAlbumStore()
-    var both: [Any] {
-        var both: [Any] = []
-        both.append(contentsOf: asmrstore.asmrTracks)
-        both.append(contentsOf: albumstore.asmrAlbums)
-        return both
+    @ObservedObject private var trackstore = AsmrTrackStore()
+    @ObservedObject private var albumstore = AsmrAlbumStore()
+    var both: [asmrEither] {
+        var either: [asmrEither] = []
+        for track in trackstore.asmrTracks {
+            either.append(asmrEither(track))
+        }
+        for album in albumstore.asmrAlbums {
+            either.append(asmrEither(album))
+        }
+        return either
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            List{
+                ForEach(both, id: \.self) {item in
+                    switch (item.type) {
+                    case (.album):
+                        Text(item.title)
+                    case (.track):
+                        Text(item.title)
+                    default:
+                        Text("Nothing")
+                    }
+                }
+            }
+            Button(action: debug) {
+                Text("debug")
+            }
+        }.onAppear {
+            AsmrTrackStore.load {result in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    trackstore.asmrTracks = []
+                    //fatalError(error.localizedDescription)
+                case .success (let asmrtracks):
+                    trackstore.asmrTracks = asmrtracks
+                }
+            }
+            AsmrAlbumStore.load {result in
+                switch result {
+                case .failure (let error):
+                    print(error.localizedDescription)
+                    albumstore.asmrAlbums = []
+                
+                case .success (let asmralbums):
+                albumstore.asmrAlbums = asmralbums
+                }
+            }
+        }
+    }
+    func debug() {
+        print(both.count)
     }
 }
 

@@ -16,6 +16,7 @@ struct asperi: View {
     @StateObject var localaudio = localAudio()
     @State private var playButton: Image = Image(systemName: "play.circle")
     @State private var page: Int? = 0
+    @State private var savePresetAlert: Bool = false
     
     func getPlayPauseButton() -> Image {
         if (self.audiosettings.playing) {
@@ -25,7 +26,9 @@ struct asperi: View {
         }
     }
     
-
+    func foo() {
+        print("Hello World!")
+    }
     
     func debug() {
         print(self.audiosettings.asmralbum.songs.count)
@@ -43,6 +46,8 @@ struct asperi: View {
     func printStuff() {
         self.localaudio.printLocalAudioList()
     }
+    
+    
     
     var body: some View {
         NavigationView{
@@ -214,10 +219,36 @@ struct asperi: View {
                     step: 1)
                         .padding(.leading)
                         .padding(.trailing)
-                    Button(action: self.debug) {
-                        Text("Debugging Button")
-                    }
                     
+                    Group{
+                        Button(action: self.debug) {
+                            Text("Debugging Button")
+                        }
+                        HStack{
+                            Button(action: {
+                                savePresetAlert = true
+                            }) {
+                                Text("Save Preset")
+                            }
+                                .alert(isPresented: $savePresetAlert) {
+                                    Alert(
+                                        title: Text("Save Preset Confirmation"),
+                                        message: Text("Save the following preset?"),
+                                        primaryButton: .default(
+                                        Text("Save"),
+                                        action: foo
+                                        ),
+                                        secondaryButton: .destructive(
+                                            Text("Cancel"),
+                                            action: foo
+                                        )
+                                    )
+                            }.padding()
+                            Button(action: self.foo) {
+                            Text("Load Preset")
+                            }.padding()
+                        }.padding()
+                    }
                     
 //                Button(action: {
 //                    self.audiosettings.changeSong()

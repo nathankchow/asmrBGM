@@ -77,10 +77,10 @@ struct loadPreset: View, Equatable {
                         }
                     }.contentShape(Rectangle())
                         .onTapGesture {
-                        asmrtrack = item.asmr.track!
-                        bgmtrack = item.bgm ?? bgmTrack(nil)
                         asmrvol = item.asmrVolume
                         bgmvol = item.bgmVolume
+                        asmrtrack = item.asmr.track!
+                        bgmtrack = item.bgm ?? bgmTrack(nil)
                         presentationMode.wrappedValue.dismiss()
                     }
                 default:

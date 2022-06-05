@@ -14,6 +14,7 @@ import AVFAudio
 struct asperi: View {
     @StateObject var audiosettings = audioSettings()
     @StateObject var localaudio = localAudio()
+    @StateObject private var store = PresetStore()
     @State private var playButton: Image = Image(systemName: "play.circle")
     @State private var page: Int? = 0
     @State private var savePresetAlert: Bool = false
@@ -47,7 +48,35 @@ struct asperi: View {
         self.localaudio.printLocalAudioList()
     }
     
+    func save() {
+        PresetStore.save(presets: store.presets) { result in
+            if case .failure (let error) = result {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
     
+    func savePreset() {
+        if (audiosettings.asmrtrack.title == "" && audiosettings.asmralbum.albumTitle == "") {
+            return
+        }
+        if (audiosettings.asmralbum.albumTitle != "") {
+            store.presets.append(preset(
+                either: asmrEither(audiosettings.asmralbum),
+                bgm: audiosettings.bgmtrack,
+                asmrVol: audiosettings.asmrVolume,
+                bgmVol: audiosettings.bgmVolume))
+            save()
+        } else if (audiosettings.asmrtrack.title != "") {
+            store.presets.append(preset(
+                either: asmrEither(audiosettings.asmrtrack),
+                bgm: audiosettings.bgmtrack,
+                asmrVol: audiosettings.asmrVolume,
+                bgmVol: audiosettings.bgmVolume))
+            print("saving multiple times?")
+            save()
+        }
+    }
     
     var body: some View {
         NavigationView{
@@ -64,6 +93,14 @@ struct asperi: View {
                         EmptyView()
                     }
                     NavigationLink(destination: loadBoth(asmralbum: self.$audiosettings.asmralbum, asmrtrack: self.$audiosettings.asmrtrack).equatable(), tag: 4, selection: $page) {
+                        EmptyView()
+                    }
+                    NavigationLink(destination: loadPreset(
+                        asmrtrack: self.$audiosettings.asmrtrack,
+                        bgmtrack: self.$audiosettings.bgmtrack,
+                        asmralbum: self.$audiosettings.asmralbum,
+                        asmrvol: self.$audiosettings.asmrVolume,
+                        bgmvol: self.$audiosettings.bgmVolume).equatable(), tag: 5, selection: $page) {
                         EmptyView()
                     }
                 }
@@ -91,6 +128,7 @@ struct asperi: View {
                     }) {
                         Text("Load Both")
                     }
+                    
                 }.onChange(of: self.$audiosettings.asmrtrack.wrappedValue) { _ in
                     if (self.playButton == Image(systemName: "play.circle")) {
                         print("All Done")
@@ -233,10 +271,10 @@ struct asperi: View {
                                 .alert(isPresented: $savePresetAlert) {
                                     Alert(
                                         title: Text("Save Preset Confirmation"),
-                                        message: Text("Save the following preset?"),
+                                        message: Text("Save the following preset?\nASMR: \(audiosettings.asmrtrack.title)\nBGM: \(audiosettings.bgmtrack.title)\n\nASMR Volume: \(audiosettings.asmrVolume)\nBGM Volume:\(audiosettings.bgmVolume)"),
                                         primaryButton: .default(
                                         Text("Save"),
-                                        action: foo
+                                        action: savePreset
                                         ),
                                         secondaryButton: .destructive(
                                             Text("Cancel"),
@@ -244,7 +282,9 @@ struct asperi: View {
                                         )
                                     )
                             }.padding()
-                            Button(action: self.foo) {
+                            Button(action: {
+                                self.page = 5
+                            }) {
                             Text("Load Preset")
                             }.padding()
                         }.padding()
@@ -269,6 +309,17 @@ struct asperi: View {
 
                 }
 
+            }
+        }.onAppear {
+            PresetStore.load {result in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    store.presets = []
+                    //fatalError(error.localizedDescription)
+                case .success (let presets):
+                    store.presets = presets
+                }
             }
         }
     }

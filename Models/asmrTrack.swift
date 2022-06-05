@@ -24,7 +24,7 @@ struct asmrTrack: Identifiable, Equatable, Hashable, Codable, Comparable {
     
     init(_ mpmediaitem: MPMediaItem?) {
         if let item = mpmediaitem {
-            title = item.title ?? "No Title"
+            title = item.title ?? ""
             assetURL = item.assetURL
             artist = item.artist ?? ""
             duration = item.playbackDuration

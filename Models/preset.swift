@@ -17,7 +17,7 @@ struct preset: Identifiable, Equatable, Hashable, Codable, Comparable {
     var asmrVolume: Float
     var bgmVolume: Float
 
-    init(_ either: asmrEither, bgm: bgmTrack?, asmrVol: Float, bgmVol: Float) {
+    init(either: asmrEither, bgm: bgmTrack?, asmrVol: Float, bgmVol: Float) {
         self.id = UUID()
         self.asmr = either
         self.bgm = bgm
